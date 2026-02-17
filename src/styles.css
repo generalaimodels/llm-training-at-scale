@@ -405,16 +405,21 @@ body {
   position: absolute;
   top: 0.58rem;
   right: 0.58rem;
+  appearance: none;
+  -webkit-appearance: none;
   border: 1px solid color-mix(in oklab, var(--border), transparent 5%);
   background: color-mix(in oklab, var(--bg-panel-solid), var(--code-bg) 18%);
   color: var(--text);
+  -webkit-text-fill-color: var(--text);
   border-radius: 999px;
   padding: 0.18rem 0.58rem;
   font-size: 0.71rem;
   font-weight: 700;
+  font-family: "Manrope", sans-serif;
   letter-spacing: 0.01em;
   cursor: pointer;
   line-height: 1.2;
+  opacity: 1;
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.16s ease;
 }
 
@@ -431,12 +436,15 @@ body {
 body[data-theme="ivory"] .copy-btn {
   border-color: rgba(63, 77, 70, 0.28);
   background: #fbf4e9;
-  color: #1f2a24;
+  color: #1f2a24 !important;
+  -webkit-text-fill-color: #1f2a24;
+  color-scheme: light;
 }
 
 body[data-theme="ivory"] .copy-btn:hover {
   background: #e4f3ec;
-  color: #0f5e4d;
+  color: #0f5e4d !important;
+  -webkit-text-fill-color: #0f5e4d;
 }
 
 .doc-content table {

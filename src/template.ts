@@ -35,6 +35,10 @@ function hrefWithRoot(rootPrefix: string, target: string): string {
   return `${rootPrefix}${target}`.replace(/\/{2,}/g, "/");
 }
 
+function withVersion(href: string, version: string): string {
+  return `${href}?v=${encodeURIComponent(version)}`;
+}
+
 function renderDocNavigation(input: DocumentTemplateInput): string {
   return input.docs
     .map((doc) => {
@@ -79,9 +83,9 @@ function renderPagerLink(rootPrefix: string, label: string, doc?: DocumentPage):
 }
 
 export function renderDocumentTemplate(input: DocumentTemplateInput): string {
-  const stylesHref = hrefWithRoot(input.rootPrefix, "assets/styles.css");
-  const appHref = hrefWithRoot(input.rootPrefix, "assets/app.js");
-  const katexHref = hrefWithRoot(input.rootPrefix, "assets/vendor/katex/katex.min.css");
+  const stylesHref = withVersion(hrefWithRoot(input.rootPrefix, "assets/styles.css"), input.generatedAt);
+  const appHref = withVersion(hrefWithRoot(input.rootPrefix, "assets/app.js"), input.generatedAt);
+  const katexHref = withVersion(hrefWithRoot(input.rootPrefix, "assets/vendor/katex/katex.min.css"), input.generatedAt);
   const pageTitle = `${input.current.title} | ${input.siteTitle}`;
 
   return `<!doctype html>
@@ -145,6 +149,7 @@ ${renderToc(input.current.headings)}
 }
 
 export function renderLandingTemplate(input: LandingTemplateInput): string {
+  const stylesHref = withVersion("assets/styles.css", input.generatedAt);
   const list = input.docs
     .map(
       (doc) =>
@@ -163,7 +168,7 @@ export function renderLandingTemplate(input: LandingTemplateInput): string {
   <title>${escapeHtml(input.siteTitle)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="${escapeHtml(stylesHref)}">
 </head>
 <body class="landing" data-theme="ivory">
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
