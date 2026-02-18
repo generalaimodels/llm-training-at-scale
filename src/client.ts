@@ -4,6 +4,259 @@ import renderMathInElement from "katex/contrib/auto-render";
 type ThemeMode = "ivory" | "graphite";
 
 const THEME_STORAGE_KEY = "docs-theme-mode";
+const FILTER_HIDDEN_CLASS = "is-filter-hidden";
+
+interface SearchEntry {
+  element: HTMLElement;
+  index: number;
+  title: string;
+  path: string;
+  folder: string;
+  titleTokens: string[];
+  pathTokens: string[];
+  folderTokens: string[];
+}
+
+interface RankedEntry {
+  entry: SearchEntry;
+  score: number;
+}
+
+function normalizeSearchQuery(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function tokenizeSearch(value: string): string[] {
+  return value.split(/[^\p{L}\p{N}]+/u).filter((token) => token.length > 0);
+}
+
+function isTypingTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) {
+    return false;
+  }
+
+  if (target.isContentEditable) {
+    return true;
+  }
+
+  return target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement;
+}
+
+function readSearchValue(element: HTMLElement, attributeName: string, fallbackSelector: string): string {
+  const attributeValue = element.getAttribute(attributeName);
+
+  if (attributeValue && attributeValue.length > 0) {
+    return attributeValue.toLowerCase();
+  }
+
+  const fallback = element.querySelector<HTMLElement>(fallbackSelector)?.textContent ?? element.textContent ?? "";
+  return fallback.trim().toLowerCase();
+}
+
+function buildSearchEntries(elements: HTMLElement[]): SearchEntry[] {
+  return elements.map((element, index) => {
+    const title = readSearchValue(element, "data-doc-title", "h2, span");
+    const path = readSearchValue(element, "data-doc-path", ".doc-card-path, small");
+    const folder = readSearchValue(element, "data-doc-folder", ".doc-card-folder");
+
+    return {
+      element,
+      index,
+      title,
+      path,
+      folder,
+      titleTokens: tokenizeSearch(title),
+      pathTokens: tokenizeSearch(path),
+      folderTokens: tokenizeSearch(folder)
+    };
+  });
+}
+
+function tokenSetScore(queryTokens: string[], candidates: string[]): number {
+  let score = 0;
+
+  for (const queryToken of queryTokens) {
+    let best = 0;
+
+    for (const candidate of candidates) {
+      if (candidate === queryToken) {
+        best = Math.max(best, 180);
+      } else if (candidate.startsWith(queryToken)) {
+        best = Math.max(best, 120);
+      } else if (candidate.includes(queryToken)) {
+        best = Math.max(best, 64);
+      }
+    }
+
+    if (best === 0) {
+      return -1;
+    }
+
+    score += best;
+  }
+
+  return score;
+}
+
+function computeSearchScore(entry: SearchEntry, normalizedQuery: string, queryTokens: string[]): number {
+  if (normalizedQuery.length === 0) {
+    return 1;
+  }
+
+  let score = -1;
+
+  if (entry.title === normalizedQuery) {
+    score = Math.max(score, 1600);
+  }
+
+  if (entry.path === normalizedQuery) {
+    score = Math.max(score, 1540);
+  }
+
+  if (entry.folder === normalizedQuery) {
+    score = Math.max(score, 1480);
+  }
+
+  if (entry.title.startsWith(normalizedQuery)) {
+    score = Math.max(score, 1350);
+  }
+
+  if (entry.path.startsWith(normalizedQuery)) {
+    score = Math.max(score, 1220);
+  }
+
+  if (entry.folder.startsWith(normalizedQuery)) {
+    score = Math.max(score, 1120);
+  }
+
+  const titleIndex = entry.title.indexOf(normalizedQuery);
+  if (titleIndex >= 0) {
+    score = Math.max(score, 980 - Math.min(titleIndex, 120));
+  }
+
+  const pathIndex = entry.path.indexOf(normalizedQuery);
+  if (pathIndex >= 0) {
+    score = Math.max(score, 920 - Math.min(pathIndex, 160));
+  }
+
+  const folderIndex = entry.folder.indexOf(normalizedQuery);
+  if (folderIndex >= 0) {
+    score = Math.max(score, 860 - Math.min(folderIndex, 160));
+  }
+
+  if (queryTokens.length > 0) {
+    const titleTokenScore = tokenSetScore(queryTokens, entry.titleTokens);
+    if (titleTokenScore >= 0) {
+      score = Math.max(score, 700 + titleTokenScore);
+    }
+
+    const pathTokenScore = tokenSetScore(queryTokens, entry.pathTokens);
+    if (pathTokenScore >= 0) {
+      score = Math.max(score, 650 + pathTokenScore);
+    }
+
+    const folderTokenScore = tokenSetScore(queryTokens, entry.folderTokens);
+    if (folderTokenScore >= 0) {
+      score = Math.max(score, 620 + folderTokenScore);
+    }
+  }
+
+  return score;
+}
+
+function updateFilterStatus(
+  statusElement: HTMLElement | null,
+  visibleCount: number,
+  totalCount: number,
+  normalizedQuery: string
+): void {
+  if (!statusElement) {
+    return;
+  }
+
+  if (normalizedQuery.length === 0) {
+    statusElement.textContent = `${totalCount} docs`;
+    return;
+  }
+
+  statusElement.textContent = `${visibleCount}/${totalCount} matches`;
+}
+
+function applyRankedFilter(
+  entries: SearchEntry[],
+  container: HTMLElement,
+  statusElement: HTMLElement | null,
+  rawQuery: string
+): void {
+  const normalizedQuery = normalizeSearchQuery(rawQuery);
+  const queryTokens = tokenizeSearch(normalizedQuery);
+
+  if (normalizedQuery.length === 0) {
+    const fragment = document.createDocumentFragment();
+    const ordered = [...entries].sort((left, right) => left.index - right.index);
+
+    for (const entry of ordered) {
+      entry.element.classList.remove(FILTER_HIDDEN_CLASS);
+      fragment.append(entry.element);
+    }
+
+    container.append(fragment);
+    updateFilterStatus(statusElement, entries.length, entries.length, normalizedQuery);
+    return;
+  }
+
+  const ranked: RankedEntry[] = [];
+
+  for (const entry of entries) {
+    const score = computeSearchScore(entry, normalizedQuery, queryTokens);
+
+    if (score >= 0) {
+      ranked.push({ entry, score });
+    }
+  }
+
+  ranked.sort((left, right) => {
+    if (right.score !== left.score) {
+      return right.score - left.score;
+    }
+
+    if (left.entry.path.length !== right.entry.path.length) {
+      return left.entry.path.length - right.entry.path.length;
+    }
+
+    return left.entry.index - right.entry.index;
+  });
+
+  const visibleElements = new Set<HTMLElement>();
+  const fragment = document.createDocumentFragment();
+
+  for (const item of ranked) {
+    visibleElements.add(item.entry.element);
+    item.entry.element.classList.remove(FILTER_HIDDEN_CLASS);
+    fragment.append(item.entry.element);
+  }
+
+  for (const entry of entries) {
+    if (!visibleElements.has(entry.element)) {
+      entry.element.classList.add(FILTER_HIDDEN_CLASS);
+    }
+  }
+
+  container.append(fragment);
+  updateFilterStatus(statusElement, ranked.length, entries.length, normalizedQuery);
+}
+
+function attachSearchShortcut(input: HTMLInputElement): void {
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "/" || isTypingTarget(event.target)) {
+      return;
+    }
+
+    event.preventDefault();
+    input.focus();
+    input.select();
+  });
+}
 
 function getThemeButton(): HTMLButtonElement | null {
   return document.querySelector<HTMLButtonElement>("#theme-toggle");
@@ -54,21 +307,62 @@ function initMenuToggle(): void {
 
 function initDocumentFilter(): void {
   const filter = document.querySelector<HTMLInputElement>("#nav-filter");
+  const container = document.querySelector<HTMLElement>(".doc-nav");
+  const status = document.querySelector<HTMLElement>("#filter-status");
   const links = Array.from(document.querySelectorAll<HTMLElement>("[data-doc-link]"));
 
-  if (!filter || links.length === 0) {
+  if (!filter || !container || links.length === 0) {
     return;
   }
 
-  filter.addEventListener("input", () => {
-    const query = filter.value.trim().toLowerCase();
+  const entries = buildSearchEntries(links);
+  let pendingFrame = 0;
 
-    for (const link of links) {
-      const text = (link.textContent ?? "").toLowerCase();
-      const visible = query.length === 0 || text.includes(query);
-      link.classList.toggle("is-filter-hidden", !visible);
+  const update = (): void => {
+    pendingFrame = 0;
+    applyRankedFilter(entries, container, status, filter.value);
+  };
+
+  filter.addEventListener("input", () => {
+    if (pendingFrame !== 0) {
+      window.cancelAnimationFrame(pendingFrame);
     }
+
+    pendingFrame = window.requestAnimationFrame(update);
   });
+
+  attachSearchShortcut(filter);
+  update();
+}
+
+function initLandingFilter(): void {
+  const filter = document.querySelector<HTMLInputElement>("#landing-filter");
+  const container = document.querySelector<HTMLElement>("#landing-grid");
+  const status = document.querySelector<HTMLElement>("#landing-results");
+  const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-landing-card]"));
+
+  if (!filter || !container || cards.length === 0) {
+    return;
+  }
+
+  const entries = buildSearchEntries(cards);
+  let pendingFrame = 0;
+
+  const update = (): void => {
+    pendingFrame = 0;
+    applyRankedFilter(entries, container, status, filter.value);
+  };
+
+  filter.addEventListener("input", () => {
+    if (pendingFrame !== 0) {
+      window.cancelAnimationFrame(pendingFrame);
+    }
+
+    pendingFrame = window.requestAnimationFrame(update);
+  });
+
+  attachSearchShortcut(filter);
+  update();
 }
 
 function initCodeCopyButtons(): void {
@@ -284,6 +578,7 @@ async function bootstrap(): Promise<void> {
   initThemeToggle();
   initMenuToggle();
   initDocumentFilter();
+  initLandingFilter();
   initCodeCopyButtons();
   initTableOfContentsHighlight();
   initRevealAnimation();

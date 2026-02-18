@@ -7,8 +7,8 @@
   <title>Diving into the GPUs — Fusing, Threading, and Mixing | Model Parallel Technical Documentation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css?v=2026-02-17T19%3A32%3A28.597Z">
-  <link rel="stylesheet" href="./assets/styles.css?v=2026-02-17T19%3A32%3A28.597Z">
+  <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css?v=2026-02-18T14%3A00%3A51.457Z">
+  <link rel="stylesheet" href="./assets/styles.css?v=2026-02-18T14%3A00%3A51.457Z">
 </head>
 <body data-theme="ivory">
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
@@ -21,6 +21,7 @@
     </a>
     <div class="topbar-actions">
       <input id="nav-filter" class="doc-filter" type="search" placeholder="Filter documents" aria-label="Filter documents">
+      <p id="filter-status" class="filter-status" aria-live="polite"></p>
       <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme">Graphite</button>
     </div>
   </header>
@@ -29,20 +30,20 @@
       <p class="pane-label">Source Folder</p>
       <p class="pane-title">llm_training_at_scale</p>
       <nav class="doc-nav" aria-label="Document list">
-<a class="doc-link" data-doc-link href="./context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
-<a class="doc-link" data-doc-link href="./context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
-<a class="doc-link" data-doc-link href="./data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
-<a class="doc-link" data-doc-link href="./data_parallelism.html"><span>Data Parallelism (DP): A Comprehensive Technical Treatment</span><small>data_parallelism</small></a>
-<a class="doc-link" data-doc-link href="./distributed_large_model_training.html"><span>Finding the Best Training Configuration for Distributed Large Model Training</span><small>distributed_large_model_training</small></a>
-<a class="doc-link is-active" data-doc-link href="./diving_gpus_fusing_threading_and_mixing.html"><span>Diving into the GPUs — Fusing, Threading, and Mixing</span><small>diving_gpus_fusing_threading_and_mixing</small></a>
-<a class="doc-link" data-doc-link href="./expert_parallelism_update.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism_update</small></a>
-<a class="doc-link" data-doc-link href="./expert_parallelism.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism</small></a>
-<a class="doc-link" data-doc-link href="./high_level_overview_updated.html"><span>Scaling Distributed Training: Foundations and First Principles</span><small>high_level_overview_updated</small></a>
-<a class="doc-link" data-doc-link href="./high_level_overview.html"><span>High-Level Overview of Distributed Training: Foundations, Memory Analysis, and First-Step Techniques</span><small>high_level_overview</small></a>
-<a class="doc-link" data-doc-link href="./pipelineparallelism_update.html"><span>Pipeline Parallelism: Comprehensive Technical Exposition</span><small>pipelineparallelism_update</small></a>
-<a class="doc-link" data-doc-link href="./pipelineparallelism.html"><span>Pipeline Parallelism: A Comprehensive Technical Exposition</span><small>pipelineparallelism</small></a>
-<a class="doc-link" data-doc-link href="./tensor_parallelism_update.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism_update</small></a>
-<a class="doc-link" data-doc-link href="./tensor_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="context parallelism and ring attention" data-doc-path="context_parallelism_update" data-doc-folder="root" href="./context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="context_parallelism" data-doc-folder="root" href="./context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism: a comprehensive technical treatment" data-doc-path="data_parallelism_basic" data-doc-folder="root" href="./data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism (dp): a comprehensive technical treatment" data-doc-path="data_parallelism" data-doc-folder="root" href="./data_parallelism.html"><span>Data Parallelism (DP): A Comprehensive Technical Treatment</span><small>data_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="finding the best training configuration for distributed large model training" data-doc-path="distributed_large_model_training" data-doc-folder="root" href="./distributed_large_model_training.html"><span>Finding the Best Training Configuration for Distributed Large Model Training</span><small>distributed_large_model_training</small></a>
+<a class="doc-link is-active" data-doc-link data-doc-title="diving into the gpus — fusing, threading, and mixing" data-doc-path="diving_gpus_fusing_threading_and_mixing" data-doc-folder="root" href="./diving_gpus_fusing_threading_and_mixing.html"><span>Diving into the GPUs — Fusing, Threading, and Mixing</span><small>diving_gpus_fusing_threading_and_mixing</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism_update" data-doc-folder="root" href="./expert_parallelism_update.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism" data-doc-folder="root" href="./expert_parallelism.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="scaling distributed training: foundations and first principles" data-doc-path="high_level_overview_updated" data-doc-folder="root" href="./high_level_overview_updated.html"><span>Scaling Distributed Training: Foundations and First Principles</span><small>high_level_overview_updated</small></a>
+<a class="doc-link" data-doc-link data-doc-title="high-level overview of distributed training: foundations, memory analysis, and first-step techniques" data-doc-path="high_level_overview" data-doc-folder="root" href="./high_level_overview.html"><span>High-Level Overview of Distributed Training: Foundations, Memory Analysis, and First-Step Techniques</span><small>high_level_overview</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: comprehensive technical exposition" data-doc-path="pipelineparallelism_update" data-doc-folder="root" href="./pipelineparallelism_update.html"><span>Pipeline Parallelism: Comprehensive Technical Exposition</span><small>pipelineparallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: a comprehensive technical exposition" data-doc-path="pipelineparallelism" data-doc-folder="root" href="./pipelineparallelism.html"><span>Pipeline Parallelism: A Comprehensive Technical Exposition</span><small>pipelineparallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism_update" data-doc-folder="root" href="./tensor_parallelism_update.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism" data-doc-folder="root" href="./tensor_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism</small></a>
       </nav>
     </aside>
     <main class="content-pane">
@@ -971,7 +972,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v1200 v585 h43z"/></svg></span></span
         <a class="pager-link" href="./expert_parallelism_update.html"><small>Next</small><strong>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</strong></a>
       </section>
       <footer class="doc-footer">
-        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-17T19:32:28.597Z">2026-02-17T19:32:28.597Z</time>.</p>
+        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-18T14:00:51.457Z">2026-02-18T14:00:51.457Z</time>.</p>
       </footer>
     </main>
     <aside class="toc-pane">
@@ -1017,6 +1018,6 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v1200 v585 h43z"/></svg></span></span
       </nav>
     </aside>
   </div>
-  <script type="module" src="./assets/app.js?v=2026-02-17T19%3A32%3A28.597Z"></script>
+  <script type="module" src="./assets/app.js?v=2026-02-18T14%3A00%3A51.457Z"></script>
 </body>
 </html>

@@ -31,6 +31,12 @@ function readableSourcePath(value: string): string {
   return value.replace(/\.md$/i, "");
 }
 
+function folderFromRelativePath(relativePath: string): string {
+  const normalized = readableSourcePath(relativePath);
+  const lastSlash = normalized.lastIndexOf("/");
+  return lastSlash <= 0 ? "root" : normalized.slice(0, lastSlash);
+}
+
 function hrefWithRoot(rootPrefix: string, target: string): string {
   return `${rootPrefix}${target}`.replace(/\/{2,}/g, "/");
 }
@@ -45,10 +51,17 @@ function renderDocNavigation(input: DocumentTemplateInput): string {
       const isActive = doc.outputRelPath === input.current.outputRelPath;
       const classNames = isActive ? "doc-link is-active" : "doc-link";
       const href = hrefWithRoot(input.rootPrefix, doc.outputRelPath);
+      const readablePath = readableSourcePath(doc.relativeMarkdownPath);
+      const folderLabel = folderFromRelativePath(doc.relativeMarkdownPath);
+      const titleSearch = doc.title.toLowerCase();
+      const pathSearch = readablePath.toLowerCase();
+      const folderSearch = folderLabel.toLowerCase();
 
-      return `<a class="${classNames}" data-doc-link href="${escapeHtml(href)}"><span>${escapeHtml(
+      return `<a class="${classNames}" data-doc-link data-doc-title="${escapeHtml(titleSearch)}" data-doc-path="${escapeHtml(
+        pathSearch
+      )}" data-doc-folder="${escapeHtml(folderSearch)}" href="${escapeHtml(href)}"><span>${escapeHtml(
         doc.title
-      )}</span><small>${escapeHtml(readableSourcePath(doc.relativeMarkdownPath))}</small></a>`;
+      )}</span><small>${escapeHtml(readablePath)}</small></a>`;
     })
     .join("\n");
 }
@@ -111,6 +124,7 @@ export function renderDocumentTemplate(input: DocumentTemplateInput): string {
     </a>
     <div class="topbar-actions">
       <input id="nav-filter" class="doc-filter" type="search" placeholder="Filter documents" aria-label="Filter documents">
+      <p id="filter-status" class="filter-status" aria-live="polite"></p>
       <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme">Graphite</button>
     </div>
   </header>
@@ -150,13 +164,51 @@ ${renderToc(input.current.headings)}
 
 export function renderLandingTemplate(input: LandingTemplateInput): string {
   const stylesHref = withVersion("assets/styles.css", input.generatedAt);
-  const list = input.docs
+  const appHref = withVersion("assets/app.js", input.generatedAt);
+  const docCount = input.docs.length;
+  const folderCounts = new Map<string, number>();
+
+  for (const doc of input.docs) {
+    const folder = folderFromRelativePath(doc.relativeMarkdownPath);
+    folderCounts.set(folder, (folderCounts.get(folder) ?? 0) + 1);
+  }
+
+  const topFolders = Array.from(folderCounts.entries())
+    .sort((left, right) => {
+      if (right[1] !== left[1]) {
+        return right[1] - left[1];
+      }
+
+      return left[0].localeCompare(right[0]);
+    })
+    .slice(0, 8);
+
+  const folderPills = topFolders
     .map(
-      (doc) =>
-        `<a class="landing-link" href="${escapeHtml(doc.outputRelPath)}"><strong>${escapeHtml(
-          doc.title
-        )}</strong><span>${escapeHtml(doc.relativeMarkdownPath)}</span></a>`
+      ([folder, count]) =>
+        `<span class="folder-pill"><b>${escapeHtml(folder)}</b><small>${count} docs</small></span>`
     )
+    .join("\n");
+
+  const cards = input.docs
+    .map((doc) => {
+      const readablePath = readableSourcePath(doc.relativeMarkdownPath);
+      const folder = folderFromRelativePath(doc.relativeMarkdownPath);
+      const depth = readablePath.split("/").length;
+
+      return `<article class="doc-card" data-landing-card data-doc-title="${escapeHtml(
+        doc.title.toLowerCase()
+      )}" data-doc-path="${escapeHtml(readablePath.toLowerCase())}" data-doc-folder="${escapeHtml(
+        folder.toLowerCase()
+      )}">
+  <a class="doc-card-link" href="${escapeHtml(doc.outputRelPath)}">
+    <p class="doc-card-folder">${escapeHtml(folder)}</p>
+    <h2>${escapeHtml(doc.title)}</h2>
+    <p class="doc-card-path">${escapeHtml(readablePath)}</p>
+    <p class="doc-card-depth">Depth ${depth}</p>
+  </a>
+</article>`;
+    })
     .join("\n");
 
   return `<!doctype html>
@@ -174,15 +226,42 @@ export function renderLandingTemplate(input: LandingTemplateInput): string {
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
   <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
   <main class="landing-main">
-    <p class="landing-kicker">Generated Documentation</p>
-    <h1>${escapeHtml(input.siteTitle)}</h1>
-    <p class="landing-meta">Source: <code>${escapeHtml(input.sourceDirectory)}</code> | Built: <time datetime="${escapeHtml(
-    input.generatedAt
-  )}">${escapeHtml(input.generatedAt)}</time></p>
-    <section class="landing-grid">
-${list}
+    <section class="landing-hero">
+      <p class="landing-kicker">Distributed Systems Documentation</p>
+      <h1>${escapeHtml(input.siteTitle)}</h1>
+      <p class="landing-subtitle">Premium-grade reading experience for parallelism architecture, optimization mechanics, and scale-ready model training systems.</p>
+      <div class="landing-meta-grid">
+        <article class="meta-card">
+          <span>Total Documents</span>
+          <strong>${docCount}</strong>
+        </article>
+        <article class="meta-card">
+          <span>Source Root</span>
+          <strong>${escapeHtml(input.sourceDirectory)}</strong>
+        </article>
+        <article class="meta-card">
+          <span>Generated</span>
+          <strong><time datetime="${escapeHtml(input.generatedAt)}">${escapeHtml(input.generatedAt)}</time></strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="landing-intelligence">
+      <div class="landing-search-shell">
+        <label for="landing-filter" class="landing-search-label">Search docs by title, path, or folder</label>
+        <input id="landing-filter" class="landing-search" type="search" placeholder="Try: tensor, pipeline, expert, context, data...">
+      </div>
+      <p id="landing-results" class="landing-results" aria-live="polite">Showing ${docCount} of ${docCount} documents</p>
+      <div class="folder-pills">
+${folderPills}
+      </div>
+    </section>
+
+    <section class="landing-grid" id="landing-grid">
+${cards}
     </section>
   </main>
+  <script type="module" src="${escapeHtml(appHref)}"></script>
 </body>
 </html>`;
 }
