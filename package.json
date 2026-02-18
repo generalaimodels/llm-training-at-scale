@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:site": "tsx src/build.ts distribution site",
+    "build:site": "tsx src/build.ts llm_training_at_scale site",
     "build:site:folder": "tsx src/build.ts",
     "typecheck": "tsc --noEmit"
   },
