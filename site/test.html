@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Media Rendering – Full Capability Test">
+  <title>Media Rendering – Full Capability Test | AI Engineering Knowledge Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css?v=2026-02-18T14%3A43%3A20.223Z">
+  <link rel="stylesheet" href="./assets/styles.css?v=2026-02-18T14%3A43%3A20.223Z">
+</head>
+<body data-theme="ivory">
+  <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
+  <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn" type="button" aria-label="Toggle navigation">Menu</button>
+    <a class="brand" href="./index.html">
+      <span class="brand-kicker">Docs</span>
+      <strong>AI Engineering Knowledge Hub</strong>
+    </a>
+    <div class="topbar-actions">
+      <input id="nav-filter" class="doc-filter" type="search" placeholder="Filter documents" aria-label="Filter documents">
+      <p id="filter-status" class="filter-status" aria-live="polite"></p>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme">Graphite</button>
+    </div>
+  </header>
+  <div class="site-shell">
+    <aside class="nav-pane" id="left-nav">
+      <p class="pane-label">Source Folder</p>
+      <p class="pane-title">llm_training_at_scale</p>
+      <nav class="doc-nav" aria-label="Document list">
+<a class="doc-link" data-doc-link data-doc-title="context parallelism and ring attention" data-doc-path="context_parallelism_update" data-doc-folder="root" href="./context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="context_parallelism" data-doc-folder="root" href="./context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism: a comprehensive technical treatment" data-doc-path="data_parallelism_basic" data-doc-folder="root" href="./data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism (dp): a comprehensive technical treatment" data-doc-path="data_parallelism" data-doc-folder="root" href="./data_parallelism.html"><span>Data Parallelism (DP): A Comprehensive Technical Treatment</span><small>data_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="finding the best training configuration for distributed large model training" data-doc-path="distributed_large_model_training" data-doc-folder="root" href="./distributed_large_model_training.html"><span>Finding the Best Training Configuration for Distributed Large Model Training</span><small>distributed_large_model_training</small></a>
+<a class="doc-link" data-doc-link data-doc-title="diving into the gpus — fusing, threading, and mixing" data-doc-path="diving_gpus_fusing_threading_and_mixing" data-doc-folder="root" href="./diving_gpus_fusing_threading_and_mixing.html"><span>Diving into the GPUs — Fusing, Threading, and Mixing</span><small>diving_gpus_fusing_threading_and_mixing</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism_update" data-doc-folder="root" href="./expert_parallelism_update.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism" data-doc-folder="root" href="./expert_parallelism.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="scaling distributed training: foundations and first principles" data-doc-path="high_level_overview_updated" data-doc-folder="root" href="./high_level_overview_updated.html"><span>Scaling Distributed Training: Foundations and First Principles</span><small>high_level_overview_updated</small></a>
+<a class="doc-link" data-doc-link data-doc-title="high-level overview of distributed training: foundations, memory analysis, and first-step techniques" data-doc-path="high_level_overview" data-doc-folder="root" href="./high_level_overview.html"><span>High-Level Overview of Distributed Training: Foundations, Memory Analysis, and First-Step Techniques</span><small>high_level_overview</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: comprehensive technical exposition" data-doc-path="pipelineparallelism_update" data-doc-folder="root" href="./pipelineparallelism_update.html"><span>Pipeline Parallelism: Comprehensive Technical Exposition</span><small>pipelineparallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: a comprehensive technical exposition" data-doc-path="pipelineparallelism" data-doc-folder="root" href="./pipelineparallelism.html"><span>Pipeline Parallelism: A Comprehensive Technical Exposition</span><small>pipelineparallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism_update" data-doc-folder="root" href="./tensor_parallelism_update.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism" data-doc-folder="root" href="./tensor_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism</small></a>
+<a class="doc-link is-active" data-doc-link data-doc-title="media rendering – full capability test" data-doc-path="test" data-doc-folder="root" href="./test.html"><span>Media Rendering – Full Capability Test</span><small>test</small></a>
+      </nav>
+    </aside>
+    <main class="content-pane">
+      <article class="doc-content">
+<h1 id="media-rendering-full-capability-test" tabindex="-1">Media Rendering – Full Capability Test</h1>
+<p><strong>Markdown + HTML | Real URLs | Copy–Paste Ready</strong></p>
+<hr>
+<h2 id="1-images-markdown" tabindex="-1">1. Images (Markdown)</h2>
+<p><img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg" alt="Big Buck Bunny" loading="lazy">
+<img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg" alt="Elephants Dream" loading="lazy">
+<img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg" alt="Sintel" loading="lazy"></p>
+<hr>
+<h2 id="2-images-html-with-size-alignment" tabindex="-1">2. Images (HTML with Size &amp; Alignment)</h2>
+<img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg" width="300" />
+<p align="center">
+  <img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg" width="400" />
+</p>
+<hr>
+<h2 id="3-image-grid-html-table" tabindex="-1">3. Image Grid (HTML Table)</h2>
+<table>
+  <tr>
+    <td><img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg" width="220"/></td>
+    <td><img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg" width="220"/></td>
+  </tr>
+  <tr>
+    <td><img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg" width="220"/></td>
+    <td><img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg" width="220"/></td>
+  </tr>
+</table>
+<hr>
+<h2 id="4-audio-inline-playback-html" tabindex="-1">4. Audio – Inline Playback (HTML)</h2>
+<h3 id="mp3" tabindex="-1">MP3</h3>
+<audio controls>
+  <source src="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.mp3" type="audio/mpeg">
+</audio>
+<h3 id="multiple-formats-fallback" tabindex="-1">Multiple Formats (Fallback)</h3>
+<audio controls>
+  <source src="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.m4a" type="audio/mp4">
+  <source src="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.ogg" type="audio/ogg">
+  <source src="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.wav" type="audio/wav">
+</audio>
+<hr>
+<h2 id="5-audiogram-lrc-files" tabindex="-1">5. Audiogram / LRC Files</h2>
+<ul>
+<li><a href="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.lrc" target="_blank" rel="noopener noreferrer">sample.lrc</a></li>
+<li><a href="https://github.com/SergLam/Audio-Sample-files/raw/master/sample1.lrc" target="_blank" rel="noopener noreferrer">sample1.lrc</a></li>
+<li><a href="https://github.com/SergLam/Audio-Sample-files/raw/master/sample3.lrc" target="_blank" rel="noopener noreferrer">sample3.lrc</a></li>
+</ul>
+<hr>
+<h2 id="6-video-inline-player-with-poster" tabindex="-1">6. Video – Inline Player with Poster</h2>
+<p><video
+  controls
+  width="640"
+  poster="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg">
+<source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+</video></p>
+<hr>
+<h2 id="7-video-autoplay-loop-muted" tabindex="-1">7. Video – Autoplay / Loop (Muted)</h2>
+<video width="360" muted autoplay loop playsinline>
+  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+</video>
+<hr>
+<h2 id="8-clickable-image-video-pure-markdown" tabindex="-1">8. Clickable Image → Video (Pure Markdown)</h2>
+<p>[<img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg" alt="Elephants Dream" loading="lazy">]
+(<a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" target="_blank" rel="noopener noreferrer">http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4</a>)</p>
+<p>[<img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg" alt="Tears of Steel" loading="lazy">]
+(<a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" target="_blank" rel="noopener noreferrer">http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4</a>)</p>
+<hr>
+<h2 id="9-mixed-media-card-layout" tabindex="-1">9. Mixed Media Card Layout</h2>
+<table>
+  <tr>
+    <td width="50%">
+      <img src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg" width="100%"/>
+    </td>
+    <td width="50%">
+      <strong>Subaru Outback</strong><br/>
+      <video controls width="100%">
+        <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" type="video/mp4">
+      </video>
+    </td>
+  </tr>
+</table>
+<hr>
+<h2 id="10-direct-media-links-validation" tabindex="-1">10. Direct Media Links (Validation)</h2>
+<ul>
+<li><a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" target="_blank" rel="noopener noreferrer">Big Buck Bunny – MP4</a></li>
+<li><a href="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" target="_blank" rel="noopener noreferrer">Sintel – MP4</a></li>
+<li><a href="https://github.com/SergLam/Audio-Sample-files/raw/master/sample.mp3" target="_blank" rel="noopener noreferrer">Sample MP3</a></li>
+</ul>
+<hr>
+<h2 id="notes" tabindex="-1">Notes</h2>
+<ul>
+<li>Uses <strong>only real, publicly accessible URLs</strong></li>
+<li>Markdown + HTML hybrid</li>
+<li>Compatible with <strong>GitHub Flavored Markdown</strong></li>
+<li>Tables used for layout/grid testing</li>
+<li>Autoplay depends on host/browser policy</li>
+</ul>
+<h2 id="local-media-note" tabindex="-1">Local Media Note</h2>
+<p>Local large media binaries are intentionally excluded from the GitHub Pages build artifact to keep repository and deployment size controlled.<br>
+Use the remote media sections above for production-valid rendering tests.</p>
+
+      </article>
+      <section class="doc-pager" aria-label="Document pagination">
+        <a class="pager-link" href="./tensor_parallelism.html"><small>Previous</small><strong>Tensor Parallelism (TP) and Sequence Parallelism (SP)</strong></a>
+        <span class="pager-link is-empty">Next</span>
+      </section>
+      <footer class="doc-footer">
+        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-18T14:43:20.223Z">2026-02-18T14:43:20.223Z</time>.</p>
+      </footer>
+    </main>
+    <aside class="toc-pane">
+      <p class="pane-label">On This Page</p>
+      <nav class="toc-nav" aria-label="Table of contents">
+<a class="toc-link toc-level-2" data-toc-link href="#1-images-markdown">1. Images (Markdown)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#2-images-html-with-size-alignment">2. Images (HTML with Size &amp; Alignment)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#3-image-grid-html-table">3. Image Grid (HTML Table)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#4-audio-inline-playback-html">4. Audio – Inline Playback (HTML)</a>
+<a class="toc-link toc-level-3" data-toc-link href="#mp3">MP3</a>
+<a class="toc-link toc-level-3" data-toc-link href="#multiple-formats-fallback">Multiple Formats (Fallback)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#5-audiogram-lrc-files">5. Audiogram / LRC Files</a>
+<a class="toc-link toc-level-2" data-toc-link href="#6-video-inline-player-with-poster">6. Video – Inline Player with Poster</a>
+<a class="toc-link toc-level-2" data-toc-link href="#7-video-autoplay-loop-muted">7. Video – Autoplay / Loop (Muted)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#8-clickable-image-video-pure-markdown">8. Clickable Image → Video (Pure Markdown)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#9-mixed-media-card-layout">9. Mixed Media Card Layout</a>
+<a class="toc-link toc-level-2" data-toc-link href="#10-direct-media-links-validation">10. Direct Media Links (Validation)</a>
+<a class="toc-link toc-level-2" data-toc-link href="#notes">Notes</a>
+<a class="toc-link toc-level-2" data-toc-link href="#local-media-note">Local Media Note</a>
+      </nav>
+    </aside>
+  </div>
+  <script type="module" src="./assets/app.js?v=2026-02-18T14%3A43%3A20.223Z"></script>
+</body>
+</html>
