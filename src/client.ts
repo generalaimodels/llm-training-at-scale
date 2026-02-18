@@ -305,6 +305,48 @@ function initMenuToggle(): void {
   });
 }
 
+function initSidebarDismiss(): void {
+  const navPane = document.querySelector<HTMLElement>(".nav-pane");
+  const menuButton = document.querySelector<HTMLButtonElement>("#menu-toggle");
+
+  if (!navPane || !menuButton) {
+    return;
+  }
+
+  const closeSidebar = (): void => {
+    document.body.classList.remove("sidebar-open");
+  };
+
+  document.addEventListener("click", (event) => {
+    if (!document.body.classList.contains("sidebar-open")) {
+      return;
+    }
+
+    const target = event.target;
+    if (!(target instanceof Node)) {
+      return;
+    }
+
+    if (navPane.contains(target) || menuButton.contains(target)) {
+      return;
+    }
+
+    closeSidebar();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeSidebar();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 981px)").matches) {
+      closeSidebar();
+    }
+  });
+}
+
 function initDocumentFilter(): void {
   const filter = document.querySelector<HTMLInputElement>("#nav-filter");
   const container = document.querySelector<HTMLElement>(".doc-nav");
@@ -577,6 +619,7 @@ function initActiveDocLinkScroll(): void {
 async function bootstrap(): Promise<void> {
   initThemeToggle();
   initMenuToggle();
+  initSidebarDismiss();
   initDocumentFilter();
   initLandingFilter();
   initCodeCopyButtons();

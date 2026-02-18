@@ -13,6 +13,8 @@ interface DocumentTemplateInput {
 
 interface LandingTemplateInput {
   siteTitle: string;
+  landingKicker: string;
+  landingSubtitle: string;
   sourceDirectory: string;
   generatedAt: string;
   docs: DocumentPage[];
@@ -227,9 +229,9 @@ export function renderLandingTemplate(input: LandingTemplateInput): string {
   <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
   <main class="landing-main">
     <section class="landing-hero">
-      <p class="landing-kicker">Distributed Systems Documentation</p>
+      <p class="landing-kicker">${escapeHtml(input.landingKicker)}</p>
       <h1>${escapeHtml(input.siteTitle)}</h1>
-      <p class="landing-subtitle">Premium-grade reading experience for parallelism architecture, optimization mechanics, and scale-ready model training systems.</p>
+      <p class="landing-subtitle">${escapeHtml(input.landingSubtitle)}</p>
       <div class="landing-meta-grid">
         <article class="meta-card">
           <span>Total Documents</span>

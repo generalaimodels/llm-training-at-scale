@@ -7,8 +7,24 @@ import type { DocumentPage, RenderEnv } from "./types.js";
 
 const DEFAULT_SOURCE_DIR = "distribution";
 const DEFAULT_OUTPUT_DIR = "site";
-const SITE_TITLE = "Model Parallel Technical Documentation";
+const DEFAULT_SITE_TITLE = "AI Technical Documentation";
+const DEFAULT_LANDING_KICKER = "Technical Knowledge Base";
+const DEFAULT_LANDING_SUBTITLE =
+  "A scalable documentation workspace for LLMs, agentic AI, and advanced engineering topics.";
+const SITE_CONFIG_FILENAME = "site.config.json";
 const EXTERNAL_PROTOCOL_RE = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+
+interface SiteConfig {
+  siteTitle: string;
+  landingKicker: string;
+  landingSubtitle: string;
+}
+
+interface SiteConfigFile {
+  siteTitle?: unknown;
+  landingKicker?: unknown;
+  landingSubtitle?: unknown;
+}
 
 function toPosixPath(value: string): string {
   return value.split(path.sep).join("/");
@@ -137,6 +153,40 @@ async function copyNonMarkdownAssets(sourceDir: string, outputDir: string): Prom
   await walk(sourceDir);
 }
 
+function normalizeConfigText(value: unknown, fallback: string): string {
+  if (typeof value !== "string") {
+    return fallback;
+  }
+
+  const normalized = value.trim().replace(/\s+/g, " ");
+  return normalized.length > 0 ? normalized : fallback;
+}
+
+async function loadSiteConfig(sourceDir: string): Promise<SiteConfig> {
+  const configPath = path.join(sourceDir, SITE_CONFIG_FILENAME);
+
+  try {
+    const raw = await fs.readFile(configPath, "utf8");
+    const parsed = JSON.parse(raw) as SiteConfigFile;
+
+    return {
+      siteTitle: normalizeConfigText(parsed.siteTitle, DEFAULT_SITE_TITLE),
+      landingKicker: normalizeConfigText(parsed.landingKicker, DEFAULT_LANDING_KICKER),
+      landingSubtitle: normalizeConfigText(parsed.landingSubtitle, DEFAULT_LANDING_SUBTITLE)
+    };
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException)?.code === "ENOENT") {
+      return {
+        siteTitle: DEFAULT_SITE_TITLE,
+        landingKicker: DEFAULT_LANDING_KICKER,
+        landingSubtitle: DEFAULT_LANDING_SUBTITLE
+      };
+    }
+
+    throw new Error(`Failed to parse ${SITE_CONFIG_FILENAME}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 function relativeAssetRoot(outputRelPath: string): string {
   const depth = outputRelPath.split("/").length - 1;
   return depth === 0 ? "./" : "../".repeat(depth);
@@ -211,6 +261,7 @@ async function loadDocuments(sourceDir: string): Promise<DocumentPage[]> {
 
 async function writeDocumentPages(
   outputDir: string,
+  siteTitle: string,
   sourceDirectoryLabel: string,
   docs: DocumentPage[],
   generatedAt: string
@@ -222,7 +273,7 @@ async function writeDocumentPages(
     const rootPrefix = relativeAssetRoot(current.outputRelPath);
 
     const html = renderDocumentTemplate({
-      siteTitle: SITE_TITLE,
+      siteTitle,
       sourceDirectory: sourceDirectoryLabel,
       generatedAt,
       rootPrefix,
@@ -240,12 +291,15 @@ async function writeDocumentPages(
 
 async function writeLandingPage(
   outputDir: string,
+  siteConfig: SiteConfig,
   sourceDirectoryLabel: string,
   docs: DocumentPage[],
   generatedAt: string
 ): Promise<void> {
   const html = renderLandingTemplate({
-    siteTitle: SITE_TITLE,
+    siteTitle: siteConfig.siteTitle,
+    landingKicker: siteConfig.landingKicker,
+    landingSubtitle: siteConfig.landingSubtitle,
     sourceDirectory: sourceDirectoryLabel,
     generatedAt,
     docs
@@ -261,6 +315,7 @@ async function main(): Promise<void> {
   const sourceDir = path.resolve(rootDir, sourceArg);
   const outputDir = path.resolve(rootDir, outputArg);
   const sourceLabel = normalizeRelativeDir(rootDir, sourceDir);
+  const siteConfig = await loadSiteConfig(sourceDir);
   const docs = await loadDocuments(sourceDir);
   const generatedAt = new Date().toISOString();
 
@@ -274,8 +329,8 @@ async function main(): Promise<void> {
     copyNonMarkdownAssets(sourceDir, outputDir)
   ]);
 
-  await writeDocumentPages(outputDir, sourceLabel, docs, generatedAt);
-  await writeLandingPage(outputDir, sourceLabel, docs, generatedAt);
+  await writeDocumentPages(outputDir, siteConfig.siteTitle, sourceLabel, docs, generatedAt);
+  await writeLandingPage(outputDir, siteConfig, sourceLabel, docs, generatedAt);
 
   console.log(`Generated ${docs.length} pages in ${outputArg}`);
 }
