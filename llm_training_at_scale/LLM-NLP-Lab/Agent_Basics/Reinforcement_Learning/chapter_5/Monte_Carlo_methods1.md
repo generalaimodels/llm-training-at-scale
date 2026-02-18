@@ -1,0 +1,295 @@
+## 5 Monte Carlo Methods  
+
+---
+
+### 5.1 Monte Carlo Prediction  
+**Definition**  
+Estimate the state-value function $V_\pi(s)$ of a target policy $\pi$ from complete episodic samples without using transition dynamics.
+
+**Equations**  
+$$G_t=\sum_{k=0}^{T-t-1}\gamma^k R_{t+k+1}$$  
+$$V_\pi(s)\leftarrow V_\pi(s)+\alpha\bigl[G_t-V_\pi(s)\bigr]$$
+
+**Key Principles**  
+- Episodic sampling until terminal state.  
+- First-visit vs. every-visit estimates.  
+- Unbiasedness because $E_\pi[G_t]=V_\pi(s)$.  
+- High variance mitigated by averaging over many episodes.
+
+**Detailed Concept Analysis**  
+1. Generate episode $\{S_0,A_0,R_1,\dots,S_T\}\sim\pi$.  
+2. For each visited $s$, compute $G_t$ from first occurrence ($t=F(s)$) or all occurrences.  
+3. Incremental implementation uses constant $\alpha$ or $1/N(s)$ step size.  
+4. Converges a.s. to $V_\pi$ when $\sum\alpha=∞$, $\sum\alpha^2<∞$.
+
+**Importance**  
+- Baseline for temporal-difference (TD) approaches.  
+- Requires no bootstrapping ⇒ independent of function approximation errors.
+
+**Pros vs Cons**  
++ Simple, unbiased, model-free.  
+− High variance, only works in episodic tasks, needs long episodes.
+
+**Cutting-Edge Advances**  
+- Variance-reduced MC (control variates, baselines).  
+- Distributed MC prediction on GPUs for large-scale simulators.  
+- Combination with neural uncertainty estimation (MC dropout).
+
+---
+
+### 5.2 Monte Carlo Estimation of Action Values  
+**Definition**  
+Estimate $Q_\pi(s,a)$ by averaging returns $G_t$ obtained after first taking $(s,a)$ in an episode following $\pi$.
+
+**Equations**  
+$$Q_\pi(s,a)\leftarrow Q_\pi(s,a)+\alpha\bigl[G_t-Q_\pi(s,a)\bigr]$$
+
+**Key Principles**  
+- Need at least one visit of every $(s,a)$ under $\pi$.  
+- Policy-evaluation foundation for MC control.  
+- Decouples state and action distributions.
+
+**Detailed Concept Analysis**  
+1. Record first time step $t$ where $S_t=s, A_t=a$.  
+2. Compute $G_t$; update $Q_\pi(s,a)$.  
+3. For continuous $a$, binning or parametric approximators required.  
+4. In function approximation, gradient Monte-Carlo:  
+$$\theta\leftarrow\theta+\alpha\bigl[G_t-\hat Q_\theta(s,a)\bigr]\nabla_\theta \hat Q_\theta(s,a)$$
+
+**Importance**  
+- Enables greedy or $\epsilon$-greedy improvement.  
+- Essential when policy depends explicitly on $a$.
+
+**Pros vs Cons**  
++ Direct link to control.  
+− Requires sufficient exploration of $(s,a)$, higher variance than state-value MC.
+
+**Cutting-Edge Advances**  
+- Ensemble MC $Q$-estimation for exploration bonuses.  
+- Bayesian MC value inference (particle return distributions).  
+
+---
+
+### 5.3 Monte Carlo Control  
+**Definition**  
+Iterative policy-evaluation/improvement loop using MC returns to approximate optimal control without a model.
+
+**Equations**  
+Policy evaluation: $Q\approx Q_\pi$ via MC.  
+Policy improvement:  
+$$\pi_{k+1}(s)=\arg\max_a Q_{\pi_k}(s,a)$$  
+With $\epsilon$-greedy:  
+$$\pi_{k+1}(a|s)=  
+\begin{cases}
+1-\epsilon+\dfrac{\epsilon}{|\mathcal A|}, & a=\arg\max_{a'} Q_{\pi_k}(s,a')\\[4pt]
+\dfrac{\epsilon}{|\mathcal A|}, & \text{otherwise}
+\end{cases}$$
+
+**Key Principles**  
+- Generalized policy iteration (GPI).  
+- Convergence to $Q_*$ if every $(s,a)$ explored an unbounded number of times and $\epsilon\to0$ slowly.
+
+**Detailed Concept Analysis**  
+1. Initialize arbitrary $Q$ and $\pi$.  
+2. Generate episodes using $\pi$; update $Q$.  
+3. Improve $\pi$ greedily; repeat.  
+4. Stochastic approximation guarantees almost-sure convergence with Robbins-Monro steps.
+
+**Importance**  
+- First practical, model-free route to optimality.  
+- Basis of modern deep RL exploration strategies.
+
+**Pros vs Cons**  
++ Simple, theoretically convergent.  
+− Episode-level updates ⇒ slow, high variance.
+
+**Cutting-Edge Advances**  
+- Restart-based MC control for sparse-reward robotics.  
+- Differentiable MC control in neural decision transformers.
+
+---
+
+### 5.4 Monte Carlo Control without Exploring Starts  
+**Definition**  
+Remove unrealistic assumption of random starting actions by forcing exploration via soft-greedy policies.
+
+**Equations**  
+Same evaluation step; improvement uses $\epsilon$-softness (all $a$ non-zero probability).  
+
+**Key Principles**  
+- Guarantees coverage of $\mathcal S\times\mathcal A$.  
+- Maintains convergence by slowly decaying $\epsilon$.
+
+**Detailed Concept Analysis**  
+- Exploring starts ⇒ every episode starts in random $(s,a)$.  
+- Replaced with persistent $\epsilon$-greedy exploration.  
+- Theoretical proof: If $\sum_t\epsilon_t/|\mathcal A|=∞$, MC control converges.
+
+**Importance**  
+- Makes MC control applicable to realistic MDPs.
+
+**Pros vs Cons**  
++ Practical.  
+− Exploration still inefficient in large $|\mathcal A|$.
+
+**Cutting-Edge Advances**  
+- Parameter noise instead of $\epsilon$-greedy for exploration.  
+- Softmax-based entropy-regularized MC control.
+
+---
+
+### 5.5 Off-policy Prediction via Importance Sampling  
+**Definition**  
+Estimate $V_\pi$ or $Q_\pi$ from trajectories generated by a different behavior policy $b$ using importance sampling (IS).
+
+**Equations**  
+Per-episode (ordinary IS):  
+$$\rho^{(i)}=\prod_{t=0}^{T^{(i)}-1}\frac{\pi(A_t^{(i)}|S_t^{(i)})}{b(A_t^{(i)}|S_t^{(i)})}$$  
+$$V_\pi(s)=\frac{\sum_{i=1}^N \rho^{(i)}G_t^{(i)}\mathbf1\{S_t^{(i)}=s\}}{\sum_{i=1}^N \rho^{(i)}\mathbf1\{S_t^{(i)}=s\}}$$  
+Weighted IS uses denominator for bias-variance trade-off.
+
+**Key Principles**  
+- Unbiased if $b(a|s)>0\;\forall(s,a)$ where $\pi(a|s)>0$.  
+- Variance grows exponentially with episode length.
+
+**Detailed Concept Analysis**  
+- Importance ratio reweights returns to correct distribution mismatch.  
+- Weighted IS (WIS) normalizes to reduce variance but introduces small bias.  
+- Confidence intervals via tail bounds (Chernoff, Bernstein) under heavy-tailed $\rho$.
+
+**Importance**  
+- Enables reuse of historical data (e.g., off-policy evaluation in recommender systems).  
+- Critical for offline RL safety.
+
+**Pros vs Cons**  
++ Sample efficiency by leveraging existing logs.  
+− High variance, requires support overlap.
+
+**Cutting-Edge Advances**  
+- Doubly-robust estimators combining IS with model predictions.  
+- Self-normalized IS with control variates (e.g., V-trace in IMPALA).  
+
+---
+
+### 5.6 Incremental Implementation  
+**Definition**  
+Online update formulas that avoid storing complete return lists.
+
+**Equations**  
+Running mean update:  
+$$V\leftarrow V+\frac{1}{n}(G-V)$$  
+Constant-step update:  
+$$V\leftarrow V+\alpha(G-V)$$
+
+**Key Principles**  
+- Memory $O(|\mathcal S|)$ instead of $O(\text{episodes})$.  
+- Robbins-Monro conditions for $\alpha_t$ ensure convergence.
+
+**Detailed Concept Analysis**  
+- Maintain counters $N(s)$ or running $\alpha$.  
+- For action-values, identical schemes apply for each $(s,a)$.  
+- Compatible with function approximation using SGD.
+
+**Importance**  
+- Enables lifelong learning and streaming environments.
+
+**Pros vs Cons**  
++ Constant memory, real-time.  
+− Sensitivity to learning rate schedule.
+
+**Cutting-Edge Advances**  
+- Adaptive step-sizes (AdaGrad, Adam) inside MC updates.  
+- Weighted averaging with exponential forgetting for non-stationary tasks.
+
+---
+
+### 5.7 Off-policy Monte Carlo Control  
+**Definition**  
+Combine off-policy MC value estimation with greedy improvement toward a target optimal policy.
+
+**Equations**  
+Weighted IS $Q$ update:  
+$$Q(s,a)\leftarrow Q(s,a)+\frac{\alpha}{C(s,a)}\rho G_t$$  
+with cumulative weight $C(s,a)\leftarrow C(s,a)+\rho$.
+
+**Key Principles**  
+- Uses behavior policy $b$ for exploration, target policy is greedy w.r.t $Q$.  
+- Employ truncation/clipping to bound variance.
+
+**Detailed Concept Analysis**  
+1. Collect episodes with $b$.  
+2. Compute $\rho$ backward; update $Q$.  
+3. After each episode, improve target policy greedily.  
+4. Convergence requires $b$ covers $\arg\max_a Q(s,a)$ infinitely often.
+
+**Importance**  
+- Supports replay buffers, large-scale data sharing (e.g., DQN with MC returns).
+
+**Pros vs Cons**  
++ Data reuse, scalable.  
+− Variance & bias delicately balanced.
+
+**Cutting-Edge Advances**  
+- Retrace($\lambda$), V-trace: truncated IS for deep RL stability.  
+- Off-policy MC policy gradient estimators (PG-IS).
+
+---
+
+### 5.8 *Discounting-aware Importance Sampling*  
+**Definition**  
+IS variant weighting each timestep by discount factor to lower variance in long episodes.
+
+**Equations**  
+Per-episode weight for return starting at $t$:  
+$$\rho_t^\gamma=\prod_{k=t}^{T-1}\gamma^{k-t}\frac{\pi(A_k|S_k)}{b(A_k|S_k)}$$
+
+**Key Principles**  
+- Later weights decay by $\gamma^{k-t}$, reducing magnitude.  
+- Bias free because $\gamma$ factors cancel in expectation w.r.t $\pi$.
+
+**Detailed Concept Analysis**  
+- Equivalent to ordinary IS on undiscounted but $\gamma$-rescaled rewards.  
+- Empirically large variance reduction when $\gamma<1$.  
+- Compatible with per-decision IS.
+
+**Importance**  
+- Vital for high-horizon problems (games, finance).
+
+**Pros vs Cons**  
++ Lower variance than standard IS.  
+− Slightly more complex weighting.
+
+**Cutting-Edge Advances**  
+- Discount-aware doubly-robust estimators.  
+- Applications in infinite-horizon off-policy evaluation.
+
+---
+
+### 5.9 *Per-decision Importance Sampling*  
+**Definition**  
+Apply IS at each step rather than on full-trajectory products.
+
+**Equations**  
+Incremental update for $V_\pi(s)$ when visiting $(S_t=s)$:  
+$$V_\pi(s)\leftarrow V_\pi(s)+\alpha\bigl[\rho_{t:t}R_{t+1}+\gamma\rho_{t:t+1}V_\pi(S_{t+1})-V_\pi(s)\bigr]$$  
+where $\rho_{t:t+k}=\prod_{i=t}^{t+k}\frac{\pi(A_i|S_i)}{b(A_i|S_i)}$.
+
+**Key Principles**  
+- Weight shrinks as trajectory progresses, reducing variance.  
+- Provides incremental, bootstrapped estimators bridging MC and TD.
+
+**Detailed Concept Analysis**  
+- Each reward $R_{t+1}$ reweighted individually.  
+- Can be combined with eligibility traces $\lambda$ for $\operatorname{IS}(\lambda)$ algorithms.  
+- As $k\to\infty$, recovers episodic IS; as $k=0$, recovers TD(0) off-policy.
+
+**Importance**  
+- Foundation of modern off-policy actor-critic (e.g., ACER).
+
+**Pros vs Cons**  
++ Dramatically lower variance.  
+− Introduces small bias unless corrections applied.
+
+**Cutting-Edge Advances**  
+- Emphatic weightings (ETD) ensuring convergence with function approximation.  
+- Per-decision IS in distributed off-policy evaluator architectures.

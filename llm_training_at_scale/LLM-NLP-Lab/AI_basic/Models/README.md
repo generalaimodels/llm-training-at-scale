@@ -1,0 +1,66 @@
+- BEiT
+- BiT
+- Conditional DETR
+- ConvNeXT
+- ConvNeXTV2
+- CvT
+- D-FINE
+- DAB-DETR
+- Deformable DETR
+- DeiT
+- Depth Anything
+- Depth Anything V2
+- DepthPro
+- DETA
+- DETR
+- DiNAT
+- DINOV2
+- DINOv2 with Registers
+- DiT
+- DPT
+- EfficientFormer
+- EfficientNet
+- FocalNet
+- GLPN
+- Hiera
+- I-JEPA
+- ImageGPT
+- LeViT
+- Mask2Former
+- MaskFormer
+- MLCD
+- MobileNetV1
+- MobileNetV2
+- MobileViT
+- MobileViTV2
+- NAT
+- PoolFormer
+- Prompt Depth Anything
+- Pyramid Vision Transformer (PVT)
+- Pyramid Vision Transformer v2 (PVTv2)
+- RegNet
+- ResNet
+- RT-DETR
+- RT-DETRv2
+- SegFormer
+- SegGpt
+- SuperGlue
+- SuperPoint
+- SwiftFormer
+- Swin Transformer
+- Swin Transformer V2
+- Swin2SR
+- Table Transformer
+- TextNet
+- Timm Wrapper
+- UperNet
+- VAN
+- Vision Transformer (ViT)
+- ViT Hybrid
+- ViTDet
+- ViTMAE
+- ViTMatte
+- ViTMSN
+- ViTPose
+- YOLOS
+- ZoeDepth
