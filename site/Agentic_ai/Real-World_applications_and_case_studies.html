@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="1.15 Real-World Applications and Case Studies">
+  <title>1.15 Real-World Applications and Case Studies | AI Engineering Knowledge Hub</title>
+  <script>
+  (() => {
+    try {
+      const key = "docs-theme-mode";
+      const raw = window.localStorage.getItem(key);
+      const mode = raw === "graphite" || raw === "ivory" ? raw : "ivory";
+      document.documentElement.dataset.theme = mode;
+      document.documentElement.style.colorScheme = mode === "graphite" ? "dark" : "light";
+    } catch {
+      document.documentElement.dataset.theme = "ivory";
+      document.documentElement.style.colorScheme = "light";
+    }
+  })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/vendor/katex/katex.min.css?v=2026-02-19T19%3A13%3A56.962Z">
+  <link rel="stylesheet" href="../assets/styles.css?v=2026-02-19T19%3A13%3A56.962Z">
+</head>
+<body>
+  <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
+  <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn" type="button" aria-label="Toggle navigation">Menu</button>
+    <a class="brand" href="../index.html">
+      <span class="brand-kicker">Docs</span>
+      <strong>AI Engineering Knowledge Hub</strong>
+    </a>
+    <div class="topbar-actions">
+      <input id="nav-filter" class="doc-filter" type="search" placeholder="Filter documents" aria-label="Filter documents">
+      <p id="filter-status" class="filter-status" aria-live="polite"></p>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme">Graphite</button>
+    </div>
+  </header>
+  <div class="site-shell">
+    <aside class="nav-pane" id="left-nav">
+      <p class="pane-label">Source Folder</p>
+      <p class="pane-title">llm_training_at_scale</p>
+      <nav class="doc-nav" aria-label="Document list">
+<a class="doc-link" data-doc-link data-doc-title="1.10 advanced prompt chaining techniques" data-doc-path="agentic_ai/advanced_prompt_chaining_techniques" data-doc-folder="agentic_ai" href="../Agentic_ai/Advanced_prompt_chaining_techniques.html"><span>1.10 Advanced Prompt Chaining Techniques</span><small>Agentic_ai/Advanced_prompt_chaining_techniques</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/architecture_and_design_patterns_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Architecture_and_design_patterns_of_prompt_chains.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Architecture_and_design_patterns_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.7 error handling, robustness, and fault tolerance" data-doc-path="agentic_ai/error_handling_robustness_and_fault_tolerance" data-doc-folder="agentic_ai" href="../Agentic_ai/Error_handling_robustness_and_fault_tolerance.html"><span>1.7 Error Handling, Robustness, and Fault Tolerance</span><small>Agentic_ai/Error_handling_robustness_and_fault_tolerance</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.13 evaluation of prompt chains" data-doc-path="agentic_ai/evaluation_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Evaluation_of_prompt_chains.html"><span>1.13 Evaluation of Prompt Chains</span><small>Agentic_ai/Evaluation_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive treatment" data-doc-path="agentic_ai/foundations_of_prompt_chaining" data-doc-folder="agentic_ai" href="../Agentic_ai/Foundations_of_prompt_chaining.html"><span>Chapter 1: Prompt Chaining — Comprehensive Treatment</span><small>Agentic_ai/Foundations_of_prompt_chaining</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.9 optimization of prompt chains" data-doc-path="agentic_ai/optimization_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Optimization_of_prompt_chains.html"><span>1.9 Optimization of Prompt Chains</span><small>Agentic_ai/Optimization_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="prompt chaining: frameworks, observability, evaluation, security, applications, and paradigm comparisons" data-doc-path="agentic_ai/prompt chaining_frameworks_and_implementation" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt Chaining_frameworks_and_Implementation.html"><span>Prompt Chaining: Frameworks, Observability, Evaluation, Security, Applications, and Paradigm Comparisons</span><small>Agentic_ai/Prompt Chaining_frameworks_and_Implementation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive index" data-doc-path="agentic_ai/prompt_chaining_index" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_Chaining_index.html"><span>Chapter 1: Prompt Chaining — Comprehensive Index</span><small>Agentic_ai/Prompt_Chaining_index</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.16 prompt chaining vs. related paradigms" data-doc-path="agentic_ai/prompt_chaining_vs_related_paradigm" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_chaining_vs_related_paradigm.html"><span>1.16 Prompt Chaining vs. Related Paradigms</span><small>Agentic_ai/Prompt_chaining_vs_related_paradigm</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/prompt_design_for_chain_steps" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_design_for_chain_steps.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Prompt_design_for_chain_steps</small></a>
+<a class="doc-link is-active" data-doc-link data-doc-title="1.15 real-world applications and case studies" data-doc-path="agentic_ai/real-world_applications_and_case_studies" data-doc-folder="agentic_ai" href="../Agentic_ai/Real-World_applications_and_case_studies.html"><span>1.15 Real-World Applications and Case Studies</span><small>Agentic_ai/Real-World_applications_and_case_studies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.6 routing and conditional logic in chains" data-doc-path="agentic_ai/routing_and_conditional_logic_in_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Routing_and_conditional_logic_in_chains.html"><span>1.6 Routing and Conditional Logic in Chains</span><small>Agentic_ai/Routing_and_conditional_logic_in_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.14 security, safety, and guardrails in prompt chains" data-doc-path="agentic_ai/security_safety_and_guardrails_in_prompt_chaind" data-doc-folder="agentic_ai" href="../Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind.html"><span>1.14 Security, Safety, and Guardrails in Prompt Chains</span><small>Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.4 state management and context propagation" data-doc-path="agentic_ai/state_management_and_context_propagation" data-doc-folder="agentic_ai" href="../Agentic_ai/State_management_and_context_propagation.html"><span>1.4 State Management and Context Propagation</span><small>Agentic_ai/State_management_and_context_propagation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.5 task decomposition strategies" data-doc-path="agentic_ai/task_decomposition_strategies" data-doc-folder="agentic_ai" href="../Agentic_ai/Task_decomposition_strategies.html"><span>1.5 Task Decomposition Strategies</span><small>Agentic_ai/Task_decomposition_strategies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/documentation_mcp_mcp_for_agent_security" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/introduction_tools_action" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Introduction_Tools_Action.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Introduction_Tools_Action</small></a>
+<a class="doc-link" data-doc-link data-doc-title="2.6 security in mcp" data-doc-path="agentic_ai/tools/security_mcp_conclusion" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Security_MCP_conclusion.html"><span>2.6 Security in MCP</span><small>Agentic_ai/Tools/Security_MCP_conclusion</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota index" data-doc-path="agentic_ai/tools/tools_comprehensive_index" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Tools_comprehensive_Index.html"><span>Chapter 2: Tools — Comprehensive SOTA Index</span><small>Agentic_ai/Tools/Tools_comprehensive_Index</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.8 verification, validation, and quality control" data-doc-path="agentic_ai/verification_validation_and_quality_control" data-doc-folder="agentic_ai" href="../Agentic_ai/Verification_validation_and_quality_control.html"><span>1.8 Verification, Validation, and Quality Control</span><small>Agentic_ai/Verification_validation_and_quality_control</small></a>
+<a class="doc-link" data-doc-link data-doc-title="context parallelism and ring attention" data-doc-path="context_parallelism_update" data-doc-folder="root" href="../context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="context_parallelism" data-doc-folder="root" href="../context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism: a comprehensive technical treatment" data-doc-path="data_parallelism_basic" data-doc-folder="root" href="../data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism (dp): a comprehensive technical treatment" data-doc-path="data_parallelism" data-doc-folder="root" href="../data_parallelism.html"><span>Data Parallelism (DP): A Comprehensive Technical Treatment</span><small>data_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="finding the best training configuration for distributed large model training" data-doc-path="distributed_large_model_training" data-doc-folder="root" href="../distributed_large_model_training.html"><span>Finding the Best Training Configuration for Distributed Large Model Training</span><small>distributed_large_model_training</small></a>
+<a class="doc-link" data-doc-link data-doc-title="diving into the gpus — fusing, threading, and mixing" data-doc-path="diving_gpus_fusing_threading_and_mixing" data-doc-folder="root" href="../diving_gpus_fusing_threading_and_mixing.html"><span>Diving into the GPUs — Fusing, Threading, and Mixing</span><small>diving_gpus_fusing_threading_and_mixing</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism_update" data-doc-folder="root" href="../expert_parallelism_update.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism" data-doc-folder="root" href="../expert_parallelism.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="scaling distributed training: foundations and first principles" data-doc-path="high_level_overview_updated" data-doc-folder="root" href="../high_level_overview_updated.html"><span>Scaling Distributed Training: Foundations and First Principles</span><small>high_level_overview_updated</small></a>
+<a class="doc-link" data-doc-link data-doc-title="high-level overview of distributed training: foundations, memory analysis, and first-step techniques" data-doc-path="high_level_overview" data-doc-folder="root" href="../high_level_overview.html"><span>High-Level Overview of Distributed Training: Foundations, Memory Analysis, and First-Step Techniques</span><small>high_level_overview</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: comprehensive technical exposition" data-doc-path="pipelineparallelism_update" data-doc-folder="root" href="../pipelineparallelism_update.html"><span>Pipeline Parallelism: Comprehensive Technical Exposition</span><small>pipelineparallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: a comprehensive technical exposition" data-doc-path="pipelineparallelism" data-doc-folder="root" href="../pipelineparallelism.html"><span>Pipeline Parallelism: A Comprehensive Technical Exposition</span><small>pipelineparallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism_update" data-doc-folder="root" href="../tensor_parallelism_update.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism" data-doc-folder="root" href="../tensor_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism</small></a>
+      </nav>
+    </aside>
+    <main class="content-pane">
+      <article class="doc-content">
+<h2 id="115-real-world-applications-and-case-studies" tabindex="-1">1.15 Real-World Applications and Case Studies</h2>
+<h3 id="1151-document-processing-chains" tabindex="-1">1.15.1 Document Processing Chains</h3>
+<h4 id="architecture-end-to-end-document-analysis" tabindex="-1">Architecture: End-to-End Document Analysis</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs">                  Document Processing Chain
+┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│ Ingest  │─▶│  Chunk  │─▶│  Embed  │─▶│Retrieve │─▶│Generate │
+│         │  │         │  │         │  │         │  │         │
+│• PDF    │  │• Semantic│  │• Dense  │  │• Hybrid │  │• Answer │
+│• DOCX   │  │  split  │  │  embed  │  │  search │  │• Summary│
+│• HTML   │  │• Overlap│  │• Sparse │  │• Rerank │  │• Report │
+│• Images │  │• Metadata│  │  index  │  │• Filter │  │         │
+└─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+</code></pre>
+</div><p><strong>Step 1: Document Ingestion</strong> — Parse heterogeneous document formats into unified text + metadata representation. Handle OCR for scanned documents, table extraction, image captioning.</p>
+<p><strong>Step 2: Semantic Chunking</strong> — Split documents into semantically coherent segments. Use recursive character splitting with overlap, or embedding-based boundary detection:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Split at position </mtext><mi>i</mi><mtext> if </mtext><mi>cos</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi mathvariant="bold">e</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi mathvariant="bold">e</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>&lt;</mo><mi>τ</mi></mrow><annotation encoding="application/x-tex">
+\text{Split at position } i \text{ if } \cos(\mathbf{e}_{i-1}, \mathbf{e}_i) &lt; \tau
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Split at position </span></span><span class="mord mathnormal">i</span><span class="mord text"><span class="mord"> if </span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathbf">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span></span></eqn></section><p>where <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">e</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{e}_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5944em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathbf">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>is the embedding of sentence<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></eq>and<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.1132em;">τ</span></span></span></span></eq> is a similarity threshold.</p>
+<p><strong>Step 3: Embedding and Indexing</strong> — Generate dense embeddings and build vector index. Optionally create sparse (BM25) index for hybrid search.</p>
+<p><strong>Step 4: Retrieval</strong> — Given a query, retrieve top-<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></eq> chunks via hybrid search (dense + sparse fusion), then rerank with a cross-encoder:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mtext>score</mtext><mtext>hybrid</mtext></msub><mo stretchy="false">(</mo><mi>q</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>=</mo><mi>α</mi><mo>⋅</mo><msub><mtext>score</mtext><mtext>dense</mtext></msub><mo stretchy="false">(</mo><mi>q</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mtext>score</mtext><mtext>sparse</mtext></msub><mo stretchy="false">(</mo><mi>q</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\text{score}_{\text{hybrid}}(q, d) = \alpha \cdot \text{score}_{\text{dense}}(q, d) + (1 - \alpha) \cdot \text{score}_{\text{sparse}}(q, d)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">score</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">hybrid</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord text"><span class="mord">score</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">dense</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord text"><span class="mord">score</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">sparse</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span></span></eqn></section><p><strong>Step 5: Generation</strong> — Synthesize answer from retrieved context, with citation tracking.</p>
+<h4 id="multi-document-summarization-chain" tabindex="-1">Multi-Document Summarization Chain</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiDocSummarizationChain</span>:
+    <span class="hljs-string">&quot;&quot;&quot;
+    Map-Reduce summarization chain for large document collections.
+    
+    Stage 1 (Map): Summarize each document independently
+    Stage 2 (Reduce): Hierarchically merge summaries
+    &quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, llm, max_tokens_per_summary: <span class="hljs-built_in">int</span> = <span class="hljs-number">500</span></span>):
+        <span class="hljs-variable language_">self</span>.llm = llm
+        <span class="hljs-variable language_">self</span>.max_tokens = max_tokens_per_summary
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, documents: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-built_in">str</span>:
+        <span class="hljs-comment"># Stage 1: Map — parallel summarization</span>
+        summaries = []
+        <span class="hljs-keyword">for</span> doc <span class="hljs-keyword">in</span> documents:
+            summary = <span class="hljs-variable language_">self</span>.llm.invoke(
+                <span class="hljs-string">f&quot;Summarize the following document in <span class="hljs-subst">{self.max_tokens}</span> tokens:\n\n<span class="hljs-subst">{doc}</span>&quot;</span>
+            )
+            summaries.append(summary)
+        
+        <span class="hljs-comment"># Stage 2: Hierarchical reduce</span>
+        <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(summaries) &gt; <span class="hljs-number">1</span>:
+            merged = []
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(summaries), <span class="hljs-number">3</span>):
+                batch = summaries[i:i+<span class="hljs-number">3</span>]
+                combined = <span class="hljs-string">&quot;\n---\n&quot;</span>.join(batch)
+                merged_summary = <span class="hljs-variable language_">self</span>.llm.invoke(
+                    <span class="hljs-string">f&quot;Merge these summaries into a single coherent summary:\n\n<span class="hljs-subst">{combined}</span>&quot;</span>
+                )
+                merged.append(merged_summary)
+            summaries = merged
+        
+        <span class="hljs-keyword">return</span> summaries[<span class="hljs-number">0</span>]
+</code></pre>
+</div><p><strong>Complexity</strong>: For <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></eq>documents, the map stage requires<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></eq>LLM calls. The reduce stage requires<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>k</mi></msub><mi>N</mi><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil \log_k N \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.242em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">⌉</span></span></span></span></eq>rounds where<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></eq>is the merge factor, each round with<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>N</mi><mi mathvariant="normal">/</mi><msup><mi>k</mi><mi>r</mi></msup><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil N/k^r \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span><span class="mclose">⌉</span></span></span></span></eq>calls at round<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span></eq>. Total calls:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Total LLM calls</mtext><mo>=</mo><mi>N</mi><mo>+</mo><munderover><mo>∑</mo><mrow><mi>r</mi><mo>=</mo><mn>1</mn></mrow><mrow><mo stretchy="false">⌈</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>k</mi></msub><mi>N</mi><mo stretchy="false">⌉</mo></mrow></munderover><mrow><mo fence="true">⌈</mo><mfrac><mi>N</mi><msup><mi>k</mi><mi>r</mi></msup></mfrac><mo fence="true">⌉</mo></mrow><mo>≈</mo><mi>N</mi><mo>+</mo><mfrac><mi>N</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{Total LLM calls} = N + \sum_{r=1}^{\lceil \log_k N \rceil} \left\lceil \frac{N}{k^r} \right\rceil \approx N + \frac{N}{k-1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Total LLM calls</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:3.2392em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.9721em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3971em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">⌈</span><span class="mop mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2302em;"><span style="top:-2.2341em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2659em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mclose mtight">⌉</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">⌈</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5904em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">⌉</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.1297em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></eqn></section><hr>
+<h3 id="1152-code-generation-chains" tabindex="-1">1.15.2 Code Generation Chains</h3>
+<h4 id="full-pipeline-specification-deployment" tabindex="-1">Full Pipeline: Specification → Deployment</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs">Spec → Plan → Code → Test → Debug → Refine → Review → Deploy
+
+┌────────┐   ┌────────┐   ┌─────────┐   ┌──────────┐
+│ Parse  │──▶│ Design │──▶│Generate │──▶│ Generate │
+│ Spec   │   │  Plan  │   │  Code   │   │  Tests   │
+└────────┘   └────────┘   └─────────┘   └────┬─────┘
+                                              │
+                                              ▼
+                          ┌──────────┐   ┌──────────┐
+                          │  Debug   │◀──│ Execute  │
+                          │  &amp; Fix   │   │  Tests   │
+                          └────┬─────┘   └──────────┘
+                               │              ▲
+                               └──────────────┘ (retry loop)
+                               │
+                               ▼ (tests pass)
+                          ┌──────────┐   ┌──────────┐
+                          │  Code    │──▶│  Final   │
+                          │  Review  │   │  Output  │
+                          └──────────┘   └──────────┘
+</code></pre>
+</div><div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CodeGenerationChain</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, planner_llm, coder_llm, reviewer_llm,
+                 max_debug_iterations: <span class="hljs-built_in">int</span> = <span class="hljs-number">5</span></span>):
+        <span class="hljs-variable language_">self</span>.planner = planner_llm
+        <span class="hljs-variable language_">self</span>.coder = coder_llm
+        <span class="hljs-variable language_">self</span>.reviewer = reviewer_llm
+        <span class="hljs-variable language_">self</span>.max_debug_iterations = max_debug_iterations
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, specification: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-comment"># Step 1: Parse and plan</span>
+        plan = <span class="hljs-variable language_">self</span>.planner.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Analyze this specification and create a detailed implementation plan.
+            Include: file structure, key functions, data models, error handling strategy.
+            
+            Specification: <span class="hljs-subst">{specification}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 2: Generate code</span>
+        code = <span class="hljs-variable language_">self</span>.coder.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Implement the following plan. Write production-quality Python code.
+            
+            Plan: <span class="hljs-subst">{plan}</span>
+            
+            Requirements:
+            - Include type hints
+            - Include docstrings
+            - Handle edge cases
+            - Follow PEP 8&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 3: Generate tests</span>
+        tests = <span class="hljs-variable language_">self</span>.coder.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Write comprehensive pytest tests for the following code.
+            Cover: happy path, edge cases, error conditions.
+            
+            Code: <span class="hljs-subst">{code}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 4: Debug loop</span>
+        <span class="hljs-keyword">for</span> iteration <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-variable language_">self</span>.max_debug_iterations):
+            test_result = <span class="hljs-variable language_">self</span>._run_tests(code, tests)
+            
+            <span class="hljs-keyword">if</span> test_result[<span class="hljs-string">&quot;all_passed&quot;</span>]:
+                <span class="hljs-keyword">break</span>
+            
+            <span class="hljs-comment"># Debug: fix code based on test failures</span>
+            code = <span class="hljs-variable language_">self</span>.coder.invoke(
+                <span class="hljs-string">f&quot;&quot;&quot;Fix the following code based on test failures.
+                
+                Current code: <span class="hljs-subst">{code}</span>
+                Test code: <span class="hljs-subst">{tests}</span>
+                Failures: <span class="hljs-subst">{test_result[<span class="hljs-string">&#x27;failures&#x27;</span>]}</span>
+                
+                Return only the corrected code.&quot;&quot;&quot;</span>
+            )
+        
+        <span class="hljs-comment"># Step 5: Code review</span>
+        review = <span class="hljs-variable language_">self</span>.reviewer.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Review this code for:
+            1. Security vulnerabilities
+            2. Performance issues
+            3. Code quality
+            4. Potential bugs
+            
+            Code: <span class="hljs-subst">{code}</span>
+            Tests: <span class="hljs-subst">{tests}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">&quot;plan&quot;</span>: plan,
+            <span class="hljs-string">&quot;code&quot;</span>: code,
+            <span class="hljs-string">&quot;tests&quot;</span>: tests,
+            <span class="hljs-string">&quot;test_results&quot;</span>: test_result,
+            <span class="hljs-string">&quot;review&quot;</span>: review,
+            <span class="hljs-string">&quot;debug_iterations&quot;</span>: iteration + <span class="hljs-number">1</span>
+        }
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_run_tests</span>(<span class="hljs-params">self, code: <span class="hljs-built_in">str</span>, tests: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-string">&quot;&quot;&quot;Execute tests in sandboxed environment.&quot;&quot;&quot;</span>
+        <span class="hljs-comment"># Implementation uses subprocess with timeout and resource limits</span>
+        ...
+</code></pre>
+</div><hr>
+<h3 id="1153-data-analysis-chains" tabindex="-1">1.15.3 Data Analysis Chains</h3>
+<h4 id="natural-language-sql-insight-chain" tabindex="-1">Natural Language → SQL → Insight Chain</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NL2SQLAnalysisChain</span>:
+    <span class="hljs-string">&quot;&quot;&quot;
+    Chain: Question → SQL → Execute → Interpret → Visualize
+    &quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, llm, db_connection, schema_info: <span class="hljs-built_in">str</span></span>):
+        <span class="hljs-variable language_">self</span>.llm = llm
+        <span class="hljs-variable language_">self</span>.db = db_connection
+        <span class="hljs-variable language_">self</span>.schema = schema_info
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, question: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-comment"># Step 1: Generate SQL</span>
+        sql = <span class="hljs-variable language_">self</span>.llm.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Given the database schema:
+            <span class="hljs-subst">{self.schema}</span>
+            
+            Generate a SQL query to answer: <span class="hljs-subst">{question}</span>
+            
+            Rules:
+            - Use only SELECT statements (no mutations)
+            - Limit results to 1000 rows
+            - Include appropriate JOINs
+            - Add comments explaining the query logic
+            
+            Return only the SQL query.&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 2: Validate and sanitize SQL</span>
+        validated_sql = <span class="hljs-variable language_">self</span>._validate_sql(sql)
+        
+        <span class="hljs-comment"># Step 3: Execute</span>
+        results = <span class="hljs-variable language_">self</span>.db.execute(validated_sql, timeout=<span class="hljs-number">30</span>)
+        
+        <span class="hljs-comment"># Step 4: Interpret</span>
+        interpretation = <span class="hljs-variable language_">self</span>.llm.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Analyze these query results and provide insights.
+            
+            Original question: <span class="hljs-subst">{question}</span>
+            SQL query: <span class="hljs-subst">{validated_sql}</span>
+            Results (first 20 rows): <span class="hljs-subst">{results[:<span class="hljs-number">20</span>]}</span>
+            Total rows: <span class="hljs-subst">{<span class="hljs-built_in">len</span>(results)}</span>
+            
+            Provide:
+            1. Direct answer to the question
+            2. Key patterns or trends
+            3. Caveats or limitations of the analysis&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 5: Visualization recommendation</span>
+        viz = <span class="hljs-variable language_">self</span>.llm.invoke(
+            <span class="hljs-string">f&quot;&quot;&quot;Based on this data analysis, recommend and describe 
+            the best visualization.
+            
+            Data summary: <span class="hljs-subst">{interpretation}</span>
+            Available columns: <span class="hljs-subst">{[r.keys() <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> results[:<span class="hljs-number">1</span>]]}</span>
+            
+            Specify: chart type, x-axis, y-axis, color encoding, title.&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">&quot;sql&quot;</span>: validated_sql,
+            <span class="hljs-string">&quot;raw_results&quot;</span>: results,
+            <span class="hljs-string">&quot;interpretation&quot;</span>: interpretation,
+            <span class="hljs-string">&quot;visualization&quot;</span>: viz
+        }
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_validate_sql</span>(<span class="hljs-params">self, sql: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:
+        <span class="hljs-string">&quot;&quot;&quot;Enforce read-only, prevent injection.&quot;&quot;&quot;</span>
+        sql_upper = sql.upper().strip()
+        forbidden = [<span class="hljs-string">&quot;INSERT&quot;</span>, <span class="hljs-string">&quot;UPDATE&quot;</span>, <span class="hljs-string">&quot;DELETE&quot;</span>, <span class="hljs-string">&quot;DROP&quot;</span>, <span class="hljs-string">&quot;ALTER&quot;</span>, 
+                      <span class="hljs-string">&quot;CREATE&quot;</span>, <span class="hljs-string">&quot;TRUNCATE&quot;</span>, <span class="hljs-string">&quot;EXEC&quot;</span>, <span class="hljs-string">&quot;EXECUTE&quot;</span>]
+        <span class="hljs-keyword">for</span> keyword <span class="hljs-keyword">in</span> forbidden:
+            <span class="hljs-keyword">if</span> keyword <span class="hljs-keyword">in</span> sql_upper:
+                <span class="hljs-keyword">raise</span> SecurityError(<span class="hljs-string">f&quot;Forbidden SQL keyword: <span class="hljs-subst">{keyword}</span>&quot;</span>)
+        
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> sql_upper.startswith(<span class="hljs-string">&quot;SELECT&quot;</span>):
+            <span class="hljs-keyword">raise</span> SecurityError(<span class="hljs-string">&quot;Only SELECT queries allowed&quot;</span>)
+        
+        <span class="hljs-keyword">return</span> sql
+</code></pre>
+</div><hr>
+<h3 id="1154-content-creation-chains" tabindex="-1">1.15.4 Content Creation Chains</h3>
+<div class="code-shell"><pre class="hljs"><code class="hljs">Research → Outline → Draft → Edit → Polish → SEO → Publish
+
+┌──────────┐   ┌──────────┐   ┌──────────┐
+│ Research │──▶│ Generate │──▶│  Write   │
+│ Topic    │   │ Outline  │   │  Draft   │
+│          │   │          │   │          │
+│• Web     │   │• Thesis  │   │• Section │
+│  search  │   │• Sections│   │  by      │
+│• Papers  │   │• Key     │   │  section │
+│• Existing│   │  points  │   │          │
+│  content │   │          │   │          │
+└──────────┘   └──────────┘   └────┬─────┘
+                                    │
+         ┌──────────────────────────┤
+         ▼                          ▼
+    ┌──────────┐             ┌──────────┐
+    │ Fact     │             │ Style    │
+    │ Check    │             │ Edit     │
+    └────┬─────┘             └────┬─────┘
+         │                        │
+         └──────────┬─────────────┘
+                    ▼
+              ┌──────────┐   ┌──────────┐
+              │ Polish   │──▶│ SEO      │
+              │ &amp; Format │   │ Optimize │
+              └──────────┘   └──────────┘
+</code></pre>
+</div><hr>
+<h3 id="1155-customer-service-chains" tabindex="-1">1.15.5 Customer Service Chains</h3>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomerServiceChain</span>:
+    <span class="hljs-string">&quot;&quot;&quot;
+    Intent → Entities → Retrieve → Generate → Tone → Deliver
+    &quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, message: <span class="hljs-built_in">str</span>, customer_context: <span class="hljs-built_in">dict</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-comment"># Step 1: Intent classification</span>
+        intent = <span class="hljs-variable language_">self</span>.classify_intent(message)
+        
+        <span class="hljs-comment"># Step 2: Entity extraction</span>
+        entities = <span class="hljs-variable language_">self</span>.extract_entities(message)
+        
+        <span class="hljs-comment"># Step 3: Route by intent</span>
+        <span class="hljs-keyword">if</span> intent[<span class="hljs-string">&quot;category&quot;</span>] == <span class="hljs-string">&quot;billing&quot;</span>:
+            knowledge = <span class="hljs-variable language_">self</span>.retrieve_billing_docs(entities)
+        <span class="hljs-keyword">elif</span> intent[<span class="hljs-string">&quot;category&quot;</span>] == <span class="hljs-string">&quot;technical&quot;</span>:
+            knowledge = <span class="hljs-variable language_">self</span>.retrieve_technical_docs(entities)
+        <span class="hljs-keyword">elif</span> intent[<span class="hljs-string">&quot;category&quot;</span>] == <span class="hljs-string">&quot;complaint&quot;</span>:
+            knowledge = <span class="hljs-variable language_">self</span>.retrieve_escalation_policy(entities)
+            <span class="hljs-comment"># Trigger escalation check</span>
+            <span class="hljs-keyword">if</span> intent[<span class="hljs-string">&quot;severity&quot;</span>] == <span class="hljs-string">&quot;high&quot;</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.escalate_to_human(message, customer_context)
+        <span class="hljs-keyword">else</span>:
+            knowledge = <span class="hljs-variable language_">self</span>.retrieve_general_docs(entities)
+        
+        <span class="hljs-comment"># Step 4: Generate response</span>
+        response = <span class="hljs-variable language_">self</span>.generate_response(
+            message, intent, entities, knowledge, customer_context
+        )
+        
+        <span class="hljs-comment"># Step 5: Tone adjustment</span>
+        adjusted = <span class="hljs-variable language_">self</span>.adjust_tone(
+            response,
+            customer_sentiment=intent.get(<span class="hljs-string">&quot;sentiment&quot;</span>, <span class="hljs-string">&quot;neutral&quot;</span>),
+            brand_voice=<span class="hljs-string">&quot;professional_empathetic&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 6: Quality check</span>
+        quality = <span class="hljs-variable language_">self</span>.quality_check(adjusted, message, knowledge)
+        <span class="hljs-keyword">if</span> quality[<span class="hljs-string">&quot;score&quot;</span>] &lt; <span class="hljs-number">0.7</span>:
+            <span class="hljs-comment"># Regenerate with quality feedback</span>
+            adjusted = <span class="hljs-variable language_">self</span>.regenerate_with_feedback(
+                message, adjusted, quality[<span class="hljs-string">&quot;feedback&quot;</span>]
+            )
+        
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">&quot;response&quot;</span>: adjusted,
+            <span class="hljs-string">&quot;intent&quot;</span>: intent,
+            <span class="hljs-string">&quot;entities&quot;</span>: entities,
+            <span class="hljs-string">&quot;sources&quot;</span>: knowledge.get(<span class="hljs-string">&quot;sources&quot;</span>, []),
+            <span class="hljs-string">&quot;quality_score&quot;</span>: quality[<span class="hljs-string">&quot;score&quot;</span>],
+            <span class="hljs-string">&quot;escalated&quot;</span>: <span class="hljs-literal">False</span>
+        }
+</code></pre>
+</div><hr>
+<h3 id="1156-scientific-research-chains" tabindex="-1">1.15.6 Scientific Research Chains</h3>
+<div class="code-shell"><pre class="hljs"><code class="hljs">Literature Search → Summarize → Gap Analysis → Hypothesis → Experimental Design
+
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  Literature  │─▶│  Summarize   │─▶│    Gap       │
+│   Search     │  │  Key Papers  │  │  Analysis    │
+│              │  │              │  │              │
+│• Semantic    │  │• Per-paper   │  │• What's      │
+│  Scholar API │  │  summary     │  │  known       │
+│• arXiv       │  │• Cross-paper │  │• What's      │
+│• PubMed      │  │  synthesis   │  │  unknown     │
+└──────────────┘  └──────────────┘  │• Contradictions│
+                                    └──────┬───────┘
+                                           │
+                                           ▼
+                                    ┌──────────────┐  ┌──────────────┐
+                                    │  Hypothesis  │─▶│ Experimental │
+                                    │  Generation  │  │   Design     │
+                                    │              │  │              │
+                                    │• Testable    │  │• Variables   │
+                                    │• Novel       │  │• Controls    │
+                                    │• Grounded    │  │• Sample size │
+                                    │  in evidence │  │• Metrics     │
+                                    └──────────────┘  └──────────────┘
+</code></pre>
+</div>
+      </article>
+      <section class="doc-pager" aria-label="Document pagination">
+        <a class="pager-link" href="../Agentic_ai/Prompt_design_for_chain_steps.html"><small>Previous</small><strong>Chapter 1: Prompt Chaining</strong></a>
+        <a class="pager-link" href="../Agentic_ai/Routing_and_conditional_logic_in_chains.html"><small>Next</small><strong>1.6 Routing and Conditional Logic in Chains</strong></a>
+      </section>
+      <footer class="doc-footer">
+        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-19T19:13:56.962Z">2026-02-19T19:13:56.962Z</time>.</p>
+      </footer>
+    </main>
+    <aside class="toc-pane">
+      <p class="pane-label">On This Page</p>
+      <nav class="toc-nav" aria-label="Table of contents">
+<a class="toc-link toc-level-2" data-toc-link href="#115-real-world-applications-and-case-studies">1.15 Real-World Applications and Case Studies</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1151-document-processing-chains">1.15.1 Document Processing Chains</a>
+<a class="toc-link toc-level-4" data-toc-link href="#architecture-end-to-end-document-analysis">Architecture: End-to-End Document Analysis</a>
+<a class="toc-link toc-level-4" data-toc-link href="#multi-document-summarization-chain">Multi-Document Summarization Chain</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1152-code-generation-chains">1.15.2 Code Generation Chains</a>
+<a class="toc-link toc-level-4" data-toc-link href="#full-pipeline-specification-deployment">Full Pipeline: Specification → Deployment</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1153-data-analysis-chains">1.15.3 Data Analysis Chains</a>
+<a class="toc-link toc-level-4" data-toc-link href="#natural-language-sql-insight-chain">Natural Language → SQL → Insight Chain</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1154-content-creation-chains">1.15.4 Content Creation Chains</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1155-customer-service-chains">1.15.5 Customer Service Chains</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1156-scientific-research-chains">1.15.6 Scientific Research Chains</a>
+      </nav>
+    </aside>
+  </div>
+  <script type="module" src="../assets/app.js?v=2026-02-19T19%3A13%3A56.962Z"></script>
+</body>
+</html>

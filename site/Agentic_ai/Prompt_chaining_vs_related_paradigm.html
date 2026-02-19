@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="1.16 Prompt Chaining vs. Related Paradigms">
+  <title>1.16 Prompt Chaining vs. Related Paradigms | AI Engineering Knowledge Hub</title>
+  <script>
+  (() => {
+    try {
+      const key = "docs-theme-mode";
+      const raw = window.localStorage.getItem(key);
+      const mode = raw === "graphite" || raw === "ivory" ? raw : "ivory";
+      document.documentElement.dataset.theme = mode;
+      document.documentElement.style.colorScheme = mode === "graphite" ? "dark" : "light";
+    } catch {
+      document.documentElement.dataset.theme = "ivory";
+      document.documentElement.style.colorScheme = "light";
+    }
+  })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/vendor/katex/katex.min.css?v=2026-02-19T19%3A13%3A56.962Z">
+  <link rel="stylesheet" href="../assets/styles.css?v=2026-02-19T19%3A13%3A56.962Z">
+</head>
+<body>
+  <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
+  <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn" type="button" aria-label="Toggle navigation">Menu</button>
+    <a class="brand" href="../index.html">
+      <span class="brand-kicker">Docs</span>
+      <strong>AI Engineering Knowledge Hub</strong>
+    </a>
+    <div class="topbar-actions">
+      <input id="nav-filter" class="doc-filter" type="search" placeholder="Filter documents" aria-label="Filter documents">
+      <p id="filter-status" class="filter-status" aria-live="polite"></p>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme">Graphite</button>
+    </div>
+  </header>
+  <div class="site-shell">
+    <aside class="nav-pane" id="left-nav">
+      <p class="pane-label">Source Folder</p>
+      <p class="pane-title">llm_training_at_scale</p>
+      <nav class="doc-nav" aria-label="Document list">
+<a class="doc-link" data-doc-link data-doc-title="1.10 advanced prompt chaining techniques" data-doc-path="agentic_ai/advanced_prompt_chaining_techniques" data-doc-folder="agentic_ai" href="../Agentic_ai/Advanced_prompt_chaining_techniques.html"><span>1.10 Advanced Prompt Chaining Techniques</span><small>Agentic_ai/Advanced_prompt_chaining_techniques</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/architecture_and_design_patterns_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Architecture_and_design_patterns_of_prompt_chains.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Architecture_and_design_patterns_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.7 error handling, robustness, and fault tolerance" data-doc-path="agentic_ai/error_handling_robustness_and_fault_tolerance" data-doc-folder="agentic_ai" href="../Agentic_ai/Error_handling_robustness_and_fault_tolerance.html"><span>1.7 Error Handling, Robustness, and Fault Tolerance</span><small>Agentic_ai/Error_handling_robustness_and_fault_tolerance</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.13 evaluation of prompt chains" data-doc-path="agentic_ai/evaluation_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Evaluation_of_prompt_chains.html"><span>1.13 Evaluation of Prompt Chains</span><small>Agentic_ai/Evaluation_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive treatment" data-doc-path="agentic_ai/foundations_of_prompt_chaining" data-doc-folder="agentic_ai" href="../Agentic_ai/Foundations_of_prompt_chaining.html"><span>Chapter 1: Prompt Chaining — Comprehensive Treatment</span><small>Agentic_ai/Foundations_of_prompt_chaining</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.9 optimization of prompt chains" data-doc-path="agentic_ai/optimization_of_prompt_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Optimization_of_prompt_chains.html"><span>1.9 Optimization of Prompt Chains</span><small>Agentic_ai/Optimization_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="prompt chaining: frameworks, observability, evaluation, security, applications, and paradigm comparisons" data-doc-path="agentic_ai/prompt chaining_frameworks_and_implementation" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt Chaining_frameworks_and_Implementation.html"><span>Prompt Chaining: Frameworks, Observability, Evaluation, Security, Applications, and Paradigm Comparisons</span><small>Agentic_ai/Prompt Chaining_frameworks_and_Implementation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive index" data-doc-path="agentic_ai/prompt_chaining_index" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_Chaining_index.html"><span>Chapter 1: Prompt Chaining — Comprehensive Index</span><small>Agentic_ai/Prompt_Chaining_index</small></a>
+<a class="doc-link is-active" data-doc-link data-doc-title="1.16 prompt chaining vs. related paradigms" data-doc-path="agentic_ai/prompt_chaining_vs_related_paradigm" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_chaining_vs_related_paradigm.html"><span>1.16 Prompt Chaining vs. Related Paradigms</span><small>Agentic_ai/Prompt_chaining_vs_related_paradigm</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/prompt_design_for_chain_steps" data-doc-folder="agentic_ai" href="../Agentic_ai/Prompt_design_for_chain_steps.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Prompt_design_for_chain_steps</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.15 real-world applications and case studies" data-doc-path="agentic_ai/real-world_applications_and_case_studies" data-doc-folder="agentic_ai" href="../Agentic_ai/Real-World_applications_and_case_studies.html"><span>1.15 Real-World Applications and Case Studies</span><small>Agentic_ai/Real-World_applications_and_case_studies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.6 routing and conditional logic in chains" data-doc-path="agentic_ai/routing_and_conditional_logic_in_chains" data-doc-folder="agentic_ai" href="../Agentic_ai/Routing_and_conditional_logic_in_chains.html"><span>1.6 Routing and Conditional Logic in Chains</span><small>Agentic_ai/Routing_and_conditional_logic_in_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.14 security, safety, and guardrails in prompt chains" data-doc-path="agentic_ai/security_safety_and_guardrails_in_prompt_chaind" data-doc-folder="agentic_ai" href="../Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind.html"><span>1.14 Security, Safety, and Guardrails in Prompt Chains</span><small>Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.4 state management and context propagation" data-doc-path="agentic_ai/state_management_and_context_propagation" data-doc-folder="agentic_ai" href="../Agentic_ai/State_management_and_context_propagation.html"><span>1.4 State Management and Context Propagation</span><small>Agentic_ai/State_management_and_context_propagation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.5 task decomposition strategies" data-doc-path="agentic_ai/task_decomposition_strategies" data-doc-folder="agentic_ai" href="../Agentic_ai/Task_decomposition_strategies.html"><span>1.5 Task Decomposition Strategies</span><small>Agentic_ai/Task_decomposition_strategies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/documentation_mcp_mcp_for_agent_security" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/introduction_tools_action" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Introduction_Tools_Action.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Introduction_Tools_Action</small></a>
+<a class="doc-link" data-doc-link data-doc-title="2.6 security in mcp" data-doc-path="agentic_ai/tools/security_mcp_conclusion" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Security_MCP_conclusion.html"><span>2.6 Security in MCP</span><small>Agentic_ai/Tools/Security_MCP_conclusion</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota index" data-doc-path="agentic_ai/tools/tools_comprehensive_index" data-doc-folder="agentic_ai/tools" href="../Agentic_ai/Tools/Tools_comprehensive_Index.html"><span>Chapter 2: Tools — Comprehensive SOTA Index</span><small>Agentic_ai/Tools/Tools_comprehensive_Index</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.8 verification, validation, and quality control" data-doc-path="agentic_ai/verification_validation_and_quality_control" data-doc-folder="agentic_ai" href="../Agentic_ai/Verification_validation_and_quality_control.html"><span>1.8 Verification, Validation, and Quality Control</span><small>Agentic_ai/Verification_validation_and_quality_control</small></a>
+<a class="doc-link" data-doc-link data-doc-title="context parallelism and ring attention" data-doc-path="context_parallelism_update" data-doc-folder="root" href="../context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="context_parallelism" data-doc-folder="root" href="../context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism: a comprehensive technical treatment" data-doc-path="data_parallelism_basic" data-doc-folder="root" href="../data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
+<a class="doc-link" data-doc-link data-doc-title="data parallelism (dp): a comprehensive technical treatment" data-doc-path="data_parallelism" data-doc-folder="root" href="../data_parallelism.html"><span>Data Parallelism (DP): A Comprehensive Technical Treatment</span><small>data_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="finding the best training configuration for distributed large model training" data-doc-path="distributed_large_model_training" data-doc-folder="root" href="../distributed_large_model_training.html"><span>Finding the Best Training Configuration for Distributed Large Model Training</span><small>distributed_large_model_training</small></a>
+<a class="doc-link" data-doc-link data-doc-title="diving into the gpus — fusing, threading, and mixing" data-doc-path="diving_gpus_fusing_threading_and_mixing" data-doc-folder="root" href="../diving_gpus_fusing_threading_and_mixing.html"><span>Diving into the GPUs — Fusing, Threading, and Mixing</span><small>diving_gpus_fusing_threading_and_mixing</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism_update" data-doc-folder="root" href="../expert_parallelism_update.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="expert parallelism and 5d parallelism: a comprehensive technical treatment" data-doc-path="expert_parallelism" data-doc-folder="root" href="../expert_parallelism.html"><span>Expert Parallelism and 5D Parallelism: A Comprehensive Technical Treatment</span><small>expert_parallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="scaling distributed training: foundations and first principles" data-doc-path="high_level_overview_updated" data-doc-folder="root" href="../high_level_overview_updated.html"><span>Scaling Distributed Training: Foundations and First Principles</span><small>high_level_overview_updated</small></a>
+<a class="doc-link" data-doc-link data-doc-title="high-level overview of distributed training: foundations, memory analysis, and first-step techniques" data-doc-path="high_level_overview" data-doc-folder="root" href="../high_level_overview.html"><span>High-Level Overview of Distributed Training: Foundations, Memory Analysis, and First-Step Techniques</span><small>high_level_overview</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: comprehensive technical exposition" data-doc-path="pipelineparallelism_update" data-doc-folder="root" href="../pipelineparallelism_update.html"><span>Pipeline Parallelism: Comprehensive Technical Exposition</span><small>pipelineparallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="pipeline parallelism: a comprehensive technical exposition" data-doc-path="pipelineparallelism" data-doc-folder="root" href="../pipelineparallelism.html"><span>Pipeline Parallelism: A Comprehensive Technical Exposition</span><small>pipelineparallelism</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism_update" data-doc-folder="root" href="../tensor_parallelism_update.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism_update</small></a>
+<a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="tensor_parallelism" data-doc-folder="root" href="../tensor_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>tensor_parallelism</small></a>
+      </nav>
+    </aside>
+    <main class="content-pane">
+      <article class="doc-content">
+<h2 id="116-prompt-chaining-vs-related-paradigms" tabindex="-1">1.16 Prompt Chaining vs. Related Paradigms</h2>
+<h3 id="1161-prompt-chaining-vs-agentic-systems" tabindex="-1">1.16.1 Prompt Chaining vs. Agentic Systems</h3>
+<h4 id="fundamental-distinction" tabindex="-1">Fundamental Distinction</h4>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Prompt Chain</th>
+<th>Agentic System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control flow</strong></td>
+<td>Pre-determined at design time</td>
+<td>Dynamically determined at runtime</td>
+</tr>
+<tr>
+<td><strong>Decision authority</strong></td>
+<td>Developer defines all branches</td>
+<td>Agent decides next action</td>
+</tr>
+<tr>
+<td><strong>Termination</strong></td>
+<td>Fixed steps complete</td>
+<td>Goal-satisfaction condition</td>
+</tr>
+<tr>
+<td><strong>Tool selection</strong></td>
+<td>Predetermined per step</td>
+<td>Agent selects tools dynamically</td>
+</tr>
+<tr>
+<td><strong>Error handling</strong></td>
+<td>Explicit retry/fallback logic</td>
+<td>Agent reasons about failures</td>
+</tr>
+<tr>
+<td><strong>Predictability</strong></td>
+<td>High (deterministic flow)</td>
+<td>Low (emergent behavior)</td>
+</tr>
+<tr>
+<td><strong>Debuggability</strong></td>
+<td>Easy (trace each step)</td>
+<td>Hard (reasoning opaque)</td>
+</tr>
+<tr>
+<td><strong>Cost predictability</strong></td>
+<td>Bounded (fixed steps)</td>
+<td>Unbounded (variable iterations)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="formal-characterization" tabindex="-1">Formal Characterization</h4>
+<p><strong>Chain</strong> as a fixed function composition:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="script">C</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><msub><mi>s</mi><mi>n</mi></msub><mo>∘</mo><msub><mi>s</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>∘</mo><mo>⋯</mo><mo>∘</mo><msub><mi>s</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\mathcal{C}(x) = (s_n \circ s_{n-1} \circ \cdots \circ s_1)(x)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.05834em;">C</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6528em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></eqn></section><p>where the sequence <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>s</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(s_1, \ldots, s_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></eq> is <strong>determined at design time</strong>.</p>
+<p><strong>Agent</strong> as a dynamic program:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Agent</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>a</mi><mi>t</mi></msub><mo>=</mo><mi>π</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>h</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>(select action)</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>o</mi><mi>t</mi></msub><mo>=</mo><mtext>env</mtext><mo stretchy="false">(</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>(execute action)</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi>s</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mtext>update</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>o</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>(update state)</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>terminate if goal</mtext><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>(check goal)</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+\text{Agent}(x) = \begin{cases}
+a_t = \pi(s_t, h_t) &amp; \text{(select action)} \\
+o_t = \text{env}(a_t) &amp; \text{(execute action)} \\
+s_{t+1} = \text{update}(s_t, o_t) &amp; \text{(update state)} \\
+\text{terminate if } \text{goal}(s_t) &amp; \text{(check goal)}
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Agent</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:5.76em;vertical-align:-2.63em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.95em;"><span style="top:-1.6em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-1.592em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.916em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.916em" style="width:0.8889em" viewBox="0 0 888.89 916" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V916 H384z M384 0 H504 V916 H384z"/></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.916em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.916em" style="width:0.8889em" viewBox="0 0 888.89 916" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V916 H384z M384 0 H504 V916 H384z"/></svg></span></span><span style="top:-5.2em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.45em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.13em;"><span style="top:-5.13em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord text"><span class="mord">env</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord text"><span class="mord">update</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-0.81em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">terminate if </span></span><span class="mord text"><span class="mord">goal</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.63em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.13em;"><span style="top:-5.13em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">(select action)</span></span></span></span><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">(execute action)</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">(update state)</span></span></span></span><span style="top:-0.81em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">(check goal)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.63em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></eqn></section><p>where <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span></eq>is the <strong>policy</strong> (LLM-based),<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">h_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> is the action history, and the number of iterations is <strong>not predetermined</strong>.</p>
+<h4 id="decision-criteria-when-to-use-which" tabindex="-1">Decision Criteria: When to Use Which</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs">                          Task Complexity
+                    Low ◄──────────────────► High
+                    │                          │
+     Predictability │   Single Prompt          │
+         High       │   ────────────           │   Prompt Chain
+                    │                          │   ─────────────
+                    │                          │
+                    │   Prompt Chain            │   Hybrid (Chain
+                    │   ─────────────          │   + Agentic Steps)
+         Low        │                          │
+                    │   Simple Agent            │   Full Agent
+                    │   ────────────           │   ──────────
+                    │                          │
+</code></pre>
+</div><p><strong>Use chains when</strong>:</p>
+<ul>
+<li>Task decomposition is known a priori</li>
+<li>Consistent latency/cost is required</li>
+<li>Audit trail must be deterministic</li>
+<li>Error modes are well-characterized</li>
+</ul>
+<p><strong>Use agents when</strong>:</p>
+<ul>
+<li>Task requires exploration/planning</li>
+<li>Available actions depend on intermediate results</li>
+<li>Problem solving requires iterative refinement with unknown step count</li>
+<li>Environment is dynamic</li>
+</ul>
+<h4 id="hybrid-pattern-chain-with-agentic-steps" tabindex="-1">Hybrid Pattern: Chain with Agentic Steps</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">HybridChain</span>:
+    <span class="hljs-string">&quot;&quot;&quot;Chain where specific steps use agentic reasoning.&quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, query: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-comment"># Step 1: Chain step (deterministic)</span>
+        classification = <span class="hljs-variable language_">self</span>.classify(query)
+        
+        <span class="hljs-comment"># Step 2: Agentic step (dynamic tool use)</span>
+        <span class="hljs-comment"># The agent decides which tools to use and how many iterations</span>
+        research_result = <span class="hljs-variable language_">self</span>.research_agent.run(
+            goal=<span class="hljs-string">f&quot;Find comprehensive information about: <span class="hljs-subst">{classification[<span class="hljs-string">&#x27;topic&#x27;</span>]}</span>&quot;</span>,
+            available_tools=[<span class="hljs-string">&quot;web_search&quot;</span>, <span class="hljs-string">&quot;arxiv_search&quot;</span>, <span class="hljs-string">&quot;calculator&quot;</span>],
+            max_iterations=<span class="hljs-number">10</span>,
+            budget_tokens=<span class="hljs-number">5000</span>
+        )
+        
+        <span class="hljs-comment"># Step 3: Chain step (deterministic)</span>
+        report = <span class="hljs-variable language_">self</span>.generate_report(classification, research_result)
+        
+        <span class="hljs-comment"># Step 4: Chain step (deterministic)</span>
+        formatted = <span class="hljs-variable language_">self</span>.format_output(report)
+        
+        <span class="hljs-keyword">return</span> formatted
+</code></pre>
+</div><h4 id="the-chain-to-agent-continuum" tabindex="-1">The Chain-to-Agent Continuum</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs">Rigid Chain ◄─────────────────────────────────────► Full Agent
+
+│ Fixed steps   │ Conditional  │ Loops with   │ Dynamic    │ Autonomous │
+│ no branching  │ branching    │ termination  │ tool       │ goal       │
+│               │              │ conditions   │ selection  │ pursuit    │
+│               │              │              │            │            │
+│ s1→s2→s3     │ s1→{s2a|s2b} │ s1→(s2→s3)* │ s1→agent→  │ agent(goal)│
+│               │ →s3          │ →s4          │ s3         │            │
+</code></pre>
+</div><hr>
+<h3 id="1162-prompt-chaining-vs-fine-tuning" tabindex="-1">1.16.2 Prompt Chaining vs. Fine-Tuning</h3>
+<h4 id="cost-benefit-analysis-framework" tabindex="-1">Cost-Benefit Analysis Framework</h4>
+<p>Define the <strong>break-even point</strong> between chaining and fine-tuning:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Fine-tune if: </mtext><msub><mi>N</mi><mtext>queries</mtext></msub><mo>⋅</mo><msub><mi>C</mi><mtext>chain</mtext></msub><mo>&gt;</mo><msub><mi>C</mi><mtext>finetune</mtext></msub><mo>+</mo><msub><mi>N</mi><mtext>queries</mtext></msub><mo>⋅</mo><msub><mi>C</mi><mtext>single-call</mtext></msub></mrow><annotation encoding="application/x-tex">
+\text{Fine-tune if: } N_{\text{queries}} \cdot C_{\text{chain}} &gt; C_{\text{finetune}} + N_{\text{queries}} \cdot C_{\text{single-call}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord text"><span class="mord">Fine-tune if: </span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">queries</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">finetune</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">queries</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">single-call</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section><section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>N</mi><mtext>break-even</mtext></msub><mo>=</mo><mfrac><msub><mi>C</mi><mtext>finetune</mtext></msub><mrow><msub><mi>C</mi><mtext>chain</mtext></msub><mo>−</mo><msub><mi>C</mi><mtext>single-call</mtext></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+N_{\text{break-even}} = \frac{C_{\text{finetune}}}{C_{\text{chain}} - C_{\text{single-call}}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">break-even</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3324em;vertical-align:-0.9721em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">single-call</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">finetune</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></eqn></section><p>where:</p>
+<ul>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>chain</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{chain}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> = per-query cost of the multi-step chain</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>single-call</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{single-call}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">single-call</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></eq> = per-query cost of the fine-tuned model (single call)</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>finetune</mtext></msub></mrow><annotation encoding="application/x-tex">C_{\text{finetune}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">finetune</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> = one-time cost of fine-tuning (data curation + training compute)</li>
+</ul>
+<p><strong>Example</strong>: If <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>chain</mtext></msub><mo>=</mo><mi mathvariant="normal">$</mi><mn>0.05</mn></mrow><annotation encoding="application/x-tex">C_{\text{chain}} = \$0.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">$0.05</span></span></span></span></eq>, <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>single-call</mtext></msub><mo>=</mo><mi mathvariant="normal">$</mi><mn>0.005</mn></mrow><annotation encoding="application/x-tex">C_{\text{single-call}} = \$0.005</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">single-call</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">$0.005</span></span></span></span></eq>, and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mtext>finetune</mtext></msub><mo>=</mo><mi mathvariant="normal">$</mi><mn>500</mn></mrow><annotation encoding="application/x-tex">C_{\text{finetune}} = \$500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">finetune</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">$500</span></span></span></span></eq>:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>N</mi><mtext>break-even</mtext></msub><mo>=</mo><mfrac><mn>500</mn><mrow><mn>0.05</mn><mo>−</mo><mn>0.005</mn></mrow></mfrac><mo>=</mo><mn>11,111</mn><mtext> queries</mtext></mrow><annotation encoding="application/x-tex">
+N_{\text{break-even}} = \frac{500}{0.05 - 0.005} = 11{,}111 \text{ queries}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">break-even</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0908em;vertical-align:-0.7693em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0.05</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">0.005</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">500</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8623em;vertical-align:-0.1944em;"></span><span class="mord">11</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">111</span><span class="mord text"><span class="mord"> queries</span></span></span></span></span></span></eqn></section><h4 id="decision-matrix" tabindex="-1">Decision Matrix</h4>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Favors Chaining</th>
+<th>Favors Fine-Tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data availability</td>
+<td>Few/no examples</td>
+<td>Thousands of examples</td>
+</tr>
+<tr>
+<td>Task stability</td>
+<td>Rapidly evolving</td>
+<td>Stable and well-defined</td>
+</tr>
+<tr>
+<td>Latency requirements</td>
+<td>Tolerant (&gt;2s)</td>
+<td>Strict (&lt;500ms)</td>
+</tr>
+<tr>
+<td>Query volume</td>
+<td>Low (&lt;10K/month)</td>
+<td>High (&gt;100K/month)</td>
+</tr>
+<tr>
+<td>Interpretability</td>
+<td>Need step-by-step trace</td>
+<td>Black-box acceptable</td>
+</tr>
+<tr>
+<td>Update frequency</td>
+<td>Frequent changes</td>
+<td>Rare updates</td>
+</tr>
+<tr>
+<td>Task complexity</td>
+<td>Multi-faceted reasoning</td>
+<td>Single well-defined mapping</td>
+</tr>
+</tbody>
+</table>
+<h4 id="chain-distillation" tabindex="-1">Chain Distillation</h4>
+<p>Convert a successful chain into training data for a single fine-tuned model:</p>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ChainDistiller</span>:
+    <span class="hljs-string">&quot;&quot;&quot;
+    Distill a multi-step chain into a single fine-tuned model.
+    
+    Process:
+    1. Run chain on large input corpus
+    2. Collect (input, final_output) pairs
+    3. Filter by quality
+    4. Fine-tune a single model on these pairs
+    &quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_training_data</span>(<span class="hljs-params">self, chain, inputs: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>],
+                                quality_threshold: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.8</span></span>) -&gt; <span class="hljs-built_in">list</span>[<span class="hljs-built_in">dict</span>]:
+        training_data = []
+        
+        <span class="hljs-keyword">for</span> input_text <span class="hljs-keyword">in</span> inputs:
+            <span class="hljs-keyword">try</span>:
+                result = chain.invoke({<span class="hljs-string">&quot;text&quot;</span>: input_text})
+                quality = <span class="hljs-variable language_">self</span>.evaluate_quality(input_text, result)
+                
+                <span class="hljs-keyword">if</span> quality &gt;= quality_threshold:
+                    training_data.append({
+                        <span class="hljs-string">&quot;messages&quot;</span>: [
+                            {<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: input_text},
+                            {<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;assistant&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: result[<span class="hljs-string">&quot;output&quot;</span>]}
+                        ],
+                        <span class="hljs-string">&quot;quality_score&quot;</span>: quality
+                    })
+            <span class="hljs-keyword">except</span> Exception:
+                <span class="hljs-keyword">continue</span>  <span class="hljs-comment"># Skip failed executions</span>
+        
+        <span class="hljs-keyword">return</span> training_data
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">distill</span>(<span class="hljs-params">self, chain, inputs: <span class="hljs-built_in">list</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-built_in">str</span>:
+        <span class="hljs-string">&quot;&quot;&quot;Full distillation pipeline.&quot;&quot;&quot;</span>
+        <span class="hljs-comment"># Generate data</span>
+        data = <span class="hljs-variable language_">self</span>.generate_training_data(chain, inputs)
+        
+        <span class="hljs-comment"># Fine-tune</span>
+        model_id = <span class="hljs-variable language_">self</span>.fine_tune(data)
+        
+        <span class="hljs-comment"># Validate distilled model matches chain quality</span>
+        validation_score = <span class="hljs-variable language_">self</span>.validate(model_id, chain, validation_inputs)
+        
+        <span class="hljs-keyword">if</span> validation_score &lt; <span class="hljs-number">0.95</span> * chain_baseline_score:
+            <span class="hljs-keyword">raise</span> DistillationError(
+                <span class="hljs-string">f&quot;Distilled model quality (<span class="hljs-subst">{validation_score:<span class="hljs-number">.3</span>f}</span>) &quot;</span>
+                <span class="hljs-string">f&quot;below threshold (95% of chain: <span class="hljs-subst">{<span class="hljs-number">0.95</span> * chain_baseline_score:<span class="hljs-number">.3</span>f}</span>)&quot;</span>
+            )
+        
+        <span class="hljs-keyword">return</span> model_id
+</code></pre>
+</div><hr>
+<h3 id="1163-prompt-chaining-vs-single-complex-prompt" tabindex="-1">1.16.3 Prompt Chaining vs. Single Complex Prompt</h3>
+<h4 id="complexity-threshold-analysis" tabindex="-1">Complexity Threshold Analysis</h4>
+<p>The decision between a single prompt and a chain depends on <strong>task decomposability</strong> and <strong>context window utilization</strong>:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Use chain if: </mtext><mfrac><msub><mi>T</mi><mtext>task</mtext></msub><msub><mi>W</mi><mtext>context</mtext></msub></mfrac><mo>&gt;</mo><msub><mi>θ</mi><mtext>window</mtext></msub><mtext> OR </mtext><msub><mi>D</mi><mtext>task</mtext></msub><mo>&gt;</mo><msub><mi>θ</mi><mtext>decomp</mtext></msub></mrow><annotation encoding="application/x-tex">
+\text{Use chain if: } \frac{T_{\text{task}}}{W_{\text{context}}} &gt; \theta_{\text{window}} \text{ OR } D_{\text{task}} &gt; \theta_{\text{decomp}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord text"><span class="mord">Use chain if: </span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">context</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">task</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">window</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord text"><span class="mord"> OR </span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">task</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">decomp</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></eqn></section><p>where:</p>
+<ul>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext>task</mtext></msub></mrow><annotation encoding="application/x-tex">T_{\text{task}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">task</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> = total tokens required for task context + instructions + output</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mtext>context</mtext></msub></mrow><annotation encoding="application/x-tex">W_{\text{context}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">context</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> = model context window size</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext>window</mtext></msub><mo>≈</mo><mn>0.7</mn></mrow><annotation encoding="application/x-tex">\theta_{\text{window}} \approx 0.7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">window</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.7</span></span></span></span></eq> (filling &gt;70% of context degrades quality)</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mtext>task</mtext></msub></mrow><annotation encoding="application/x-tex">D_{\text{task}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">task</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> = task decomposability score (number of independent sub-tasks)</li>
+<li><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mtext>decomp</mtext></msub><mo>≈</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\theta_{\text{decomp}} \approx 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">decomp</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></eq> (more than 3 independent sub-tasks)</li>
+</ul>
+<h4 id="empirical-quality-comparison" tabindex="-1">Empirical Quality Comparison</h4>
+<p>For a task with complexity <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></eq> (number of reasoning steps), the expected quality of single-prompt vs. chain approaches:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>Q</mi><mtext>single</mtext></msub><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mo>≈</mo><msub><mi>Q</mi><mn>0</mn></msub><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>λ</mi><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+Q_{\text{single}}(d) \approx Q_0 \cdot e^{-\lambda d}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">single</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">λ</span><span class="mord mathnormal mtight">d</span></span></span></span></span></span></span></span></span></span></span></span></span></eqn></section><section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>Q</mi><mtext>chain</mtext></msub><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mo>≈</mo><msub><mi>Q</mi><mn>0</mn></msub><mo>⋅</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>d</mi></munderover><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>ϵ</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+Q_{\text{chain}}(d) \approx Q_0 \cdot \prod_{i=1}^{d} (1 - \epsilon_i)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:3.1138em;vertical-align:-1.2777em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8361em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∏</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></eqn></section><p>where <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span></eq>is the <strong>complexity decay rate</strong> for single prompts and<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϵ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\epsilon_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq> is the <strong>per-step error rate</strong> in chains.</p>
+<p>For small <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϵ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\epsilon_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></eq>:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>Q</mi><mtext>chain</mtext></msub><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo><mo>≈</mo><msub><mi>Q</mi><mn>0</mn></msub><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>ϵ</mi><mi>i</mi></msub></mrow></msup><mo>≈</mo><msub><mi>Q</mi><mn>0</mn></msub><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>d</mi><mover accent="true"><mi>ϵ</mi><mo>ˉ</mo></mover></mrow></msup></mrow><annotation encoding="application/x-tex">
+Q_{\text{chain}}(d) \approx Q_0 \cdot e^{-\sum_i \epsilon_i} \approx Q_0 \cdot e^{-d \bar{\epsilon}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">chain</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.938em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mop mtight"><span class="mop op-symbol small-op mtight" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1496em;"><span style="top:-2.1786em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3214em;"><span></span></span></span></span></span></span><span class="mspace mtight" style="margin-right:0.1952em;"></span><span class="mord mtight"><span class="mord mathnormal mtight">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8991em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">d</span><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight">ϵ</span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></eqn></section><p>Chains outperform single prompts when:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mover accent="true"><mi>ϵ</mi><mo>ˉ</mo></mover><mo>&lt;</mo><mi>λ</mi><mi>d</mi><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mover accent="true"><mi>ϵ</mi><mo>ˉ</mo></mover><mo>&lt;</mo><mi>λ</mi></mrow><annotation encoding="application/x-tex">
+d \bar{\epsilon} &lt; \lambda d \implies \bar{\epsilon} &lt; \lambda
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">d</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">ϵ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7184em;vertical-align:-0.024em;"></span><span class="mord mathnormal">λ</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6069em;vertical-align:-0.0391em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">ϵ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span></span></eqn></section><p>This holds when <strong>per-step error rate</strong> <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>ϵ</mi><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\bar{\epsilon}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5678em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">ϵ</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1944em;"><span class="mord">ˉ</span></span></span></span></span></span></span></span></span></span></eq>is lower than the <strong>single-prompt complexity decay rate</strong><eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span></eq>, which is true for well-decomposed tasks since each sub-task is simpler than the aggregate.</p>
+<h4 id="context-window-utilization-analysis" tabindex="-1">Context Window Utilization Analysis</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs">Single Prompt:
+┌─────────────────────────────────────────────────────┐
+│ System + Instructions + All Context + All Examples  │
+│                                                     │
+│  ████████████████████████████████████████████████    │ 85% utilized
+│                                                     │
+│  ↑ Quality degrades as context fills ↑              │
+└─────────────────────────────────────────────────────┘
+
+Chain (3 steps):
+Step 1: ┌──────────────────┐
+        │ Focused context  │ 30% utilized
+        │ ██████████       │
+        └──────────────────┘
+Step 2: ┌──────────────────┐
+        │ Step 1 output +  │ 25% utilized
+        │ new instructions │
+        │ ████████         │
+        └──────────────────┘
+Step 3: ┌──────────────────┐
+        │ Step 2 output +  │ 20% utilized
+        │ final task       │
+        │ ██████           │
+        └──────────────────┘
+</code></pre>
+</div><p>Each chain step operates with a <strong>focused context window</strong>, avoiding the quality degradation that occurs with heavily-loaded single prompts.</p>
+<hr>
+<h3 id="1164-prompt-chaining-vs-multi-agent-systems" tabindex="-1">1.16.4 Prompt Chaining vs. Multi-Agent Systems</h3>
+<h4 id="structural-comparison" tabindex="-1">Structural Comparison</h4>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Single-Agent Chain</th>
+<th>Multi-Agent System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agents</strong></td>
+<td>One LLM, multiple steps</td>
+<td>Multiple specialized LLMs</td>
+</tr>
+<tr>
+<td><strong>Communication</strong></td>
+<td>Sequential data passing</td>
+<td>Message-passing protocols</td>
+</tr>
+<tr>
+<td><strong>Roles</strong></td>
+<td>Defined by step prompt</td>
+<td>Defined by agent persona</td>
+</tr>
+<tr>
+<td><strong>Conflict resolution</strong></td>
+<td>N/A (single executor)</td>
+<td>Debate, voting, arbitration</td>
+</tr>
+<tr>
+<td><strong>Parallelism</strong></td>
+<td>Step-level</td>
+<td>Agent-level</td>
+</tr>
+<tr>
+<td><strong>State management</strong></td>
+<td>Centralized context</td>
+<td>Distributed per-agent state</td>
+</tr>
+<tr>
+<td><strong>Failure modes</strong></td>
+<td>Step failure cascades</td>
+<td>Agent disagreement, deadlock</td>
+</tr>
+</tbody>
+</table>
+<h4 id="chain-as-multi-agent-orchestration-backbone" tabindex="-1">Chain as Multi-Agent Orchestration Backbone</h4>
+<div class="code-shell"><pre class="hljs"><code class="hljs language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiAgentOrchestrator</span>:
+    <span class="hljs-string">&quot;&quot;&quot;
+    Chain topology orchestrating multiple specialized agents.
+    &quot;&quot;&quot;</span>
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-variable language_">self</span>.researcher = Agent(<span class="hljs-string">&quot;researcher&quot;</span>, model=<span class="hljs-string">&quot;gpt-4o&quot;</span>, 
+                                persona=<span class="hljs-string">&quot;Expert research analyst&quot;</span>)
+        <span class="hljs-variable language_">self</span>.critic = Agent(<span class="hljs-string">&quot;critic&quot;</span>, model=<span class="hljs-string">&quot;claude-3.5-sonnet&quot;</span>,
+                           persona=<span class="hljs-string">&quot;Rigorous critic and fact-checker&quot;</span>)
+        <span class="hljs-variable language_">self</span>.writer = Agent(<span class="hljs-string">&quot;writer&quot;</span>, model=<span class="hljs-string">&quot;gpt-4o&quot;</span>,
+                           persona=<span class="hljs-string">&quot;Expert technical writer&quot;</span>)
+    
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self, topic: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">dict</span>:
+        <span class="hljs-comment"># Step 1: Research agent gathers information</span>
+        research = <span class="hljs-variable language_">self</span>.researcher.run(
+            <span class="hljs-string">f&quot;Research the topic thoroughly: <span class="hljs-subst">{topic}</span>&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 2: Critic agent reviews research</span>
+        critique = <span class="hljs-variable language_">self</span>.critic.run(
+            <span class="hljs-string">f&quot;&quot;&quot;Review this research for accuracy and completeness.
+            Identify gaps, errors, and unsupported claims.
+            
+            Research: <span class="hljs-subst">{research}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 3: Researcher addresses critique</span>
+        revised_research = <span class="hljs-variable language_">self</span>.researcher.run(
+            <span class="hljs-string">f&quot;&quot;&quot;Address the following critique of your research.
+            Fill gaps, correct errors, provide evidence.
+            
+            Original research: <span class="hljs-subst">{research}</span>
+            Critique: <span class="hljs-subst">{critique}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 4: Writer synthesizes</span>
+        article = <span class="hljs-variable language_">self</span>.writer.run(
+            <span class="hljs-string">f&quot;&quot;&quot;Write a comprehensive article on <span class="hljs-subst">{topic}</span> using this research.
+            
+            Research: <span class="hljs-subst">{revised_research}</span>
+            Key critiques addressed: <span class="hljs-subst">{critique}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-comment"># Step 5: Final review by critic</span>
+        final_review = <span class="hljs-variable language_">self</span>.critic.run(
+            <span class="hljs-string">f&quot;&quot;&quot;Final review of this article. Score 1-10 on:
+            accuracy, completeness, clarity, engagement.
+            
+            Article: <span class="hljs-subst">{article}</span>&quot;&quot;&quot;</span>
+        )
+        
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">&quot;article&quot;</span>: article,
+            <span class="hljs-string">&quot;review&quot;</span>: final_review,
+            <span class="hljs-string">&quot;research&quot;</span>: revised_research
+        }
+</code></pre>
+</div><h4 id="communication-protocol-comparison" tabindex="-1">Communication Protocol Comparison</h4>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequential passing</strong></td>
+<td>Output of agent <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></eq>→ input of agent<eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></eq></td>
+<td>Chains, pipelines</td>
+</tr>
+<tr>
+<td><strong>Blackboard</strong></td>
+<td>Shared workspace all agents read/write</td>
+<td>Collaborative editing</td>
+</tr>
+<tr>
+<td><strong>Message queue</strong></td>
+<td>Async pub/sub between agents</td>
+<td>Scalable distributed systems</td>
+</tr>
+<tr>
+<td><strong>Debate</strong></td>
+<td>Agents argue positions, judge decides</td>
+<td>Adversarial verification</td>
+</tr>
+<tr>
+<td><strong>Voting</strong></td>
+<td>Multiple agents propose, majority wins</td>
+<td>Ensemble decision making</td>
+</tr>
+</tbody>
+</table>
+<p>Formally, the communication overhead in a multi-agent system with <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></eq> agents using pairwise messaging is:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Messages</mtext><mo>=</mo><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>⋅</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\text{Messages} = O(n^2 \cdot r)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Messages</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span></span></eqn></section><p>where <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span></eq> is the number of communication rounds. In contrast, a chain has:</p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Messages</mtext><mo>=</mo><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\text{Messages} = O(n)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">Messages</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span></eqn></section><p>making chains inherently more token-efficient when the topology is predetermined.</p>
+<hr>
+<h3 id="summary-paradigm-selection-decision-tree" tabindex="-1">Summary: Paradigm Selection Decision Tree</h3>
+<div class="code-shell"><pre class="hljs"><code class="hljs">                        Task Definition
+                             │
+                     ┌───────┴───────┐
+                     │ Is the workflow│
+                     │ well-defined? │
+                     └───────┬───────┘
+                        Yes  │  No
+                  ┌──────────┴──────────┐
+                  ▼                     ▼
+           ┌─────────────┐      ┌──────────────┐
+           │ Multiple     │      │  Agent or    │
+           │ sub-tasks?   │      │  Multi-Agent │
+           └──────┬──────┘      └──────────────┘
+             Yes  │  No
+          ┌───────┴────────┐
+          ▼                ▼
+   ┌──────────────┐  ┌──────────────┐
+   │ &gt;10K queries │  │Single Prompt │
+   │ /month?      │  └──────────────┘
+   └──────┬──────┘
+     Yes  │  No
+  ┌───────┴────────┐
+  ▼                ▼
+┌──────────┐  ┌──────────┐
+│Fine-tune │  │ Prompt   │
+│(distill  │  │ Chain    │
+│ chain)   │  │          │
+└──────────┘  └──────────┘
+</code></pre>
+</div><p>This decision tree provides a systematic framework for selecting the appropriate paradigm given task characteristics, volume requirements, and operational constraints. The key insight is that <strong>these paradigms are not mutually exclusive</strong>—production systems frequently combine chains for well-understood workflows, agents for exploratory steps, and fine-tuned models for high-volume bottleneck steps.</p>
+
+      </article>
+      <section class="doc-pager" aria-label="Document pagination">
+        <a class="pager-link" href="../Agentic_ai/Prompt_Chaining_index.html"><small>Previous</small><strong>Chapter 1: Prompt Chaining — Comprehensive Index</strong></a>
+        <a class="pager-link" href="../Agentic_ai/Prompt_design_for_chain_steps.html"><small>Next</small><strong>Chapter 1: Prompt Chaining</strong></a>
+      </section>
+      <footer class="doc-footer">
+        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-19T19:13:56.962Z">2026-02-19T19:13:56.962Z</time>.</p>
+      </footer>
+    </main>
+    <aside class="toc-pane">
+      <p class="pane-label">On This Page</p>
+      <nav class="toc-nav" aria-label="Table of contents">
+<a class="toc-link toc-level-2" data-toc-link href="#116-prompt-chaining-vs-related-paradigms">1.16 Prompt Chaining vs. Related Paradigms</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1161-prompt-chaining-vs-agentic-systems">1.16.1 Prompt Chaining vs. Agentic Systems</a>
+<a class="toc-link toc-level-4" data-toc-link href="#fundamental-distinction">Fundamental Distinction</a>
+<a class="toc-link toc-level-4" data-toc-link href="#formal-characterization">Formal Characterization</a>
+<a class="toc-link toc-level-4" data-toc-link href="#decision-criteria-when-to-use-which">Decision Criteria: When to Use Which</a>
+<a class="toc-link toc-level-4" data-toc-link href="#hybrid-pattern-chain-with-agentic-steps">Hybrid Pattern: Chain with Agentic Steps</a>
+<a class="toc-link toc-level-4" data-toc-link href="#the-chain-to-agent-continuum">The Chain-to-Agent Continuum</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1162-prompt-chaining-vs-fine-tuning">1.16.2 Prompt Chaining vs. Fine-Tuning</a>
+<a class="toc-link toc-level-4" data-toc-link href="#cost-benefit-analysis-framework">Cost-Benefit Analysis Framework</a>
+<a class="toc-link toc-level-4" data-toc-link href="#decision-matrix">Decision Matrix</a>
+<a class="toc-link toc-level-4" data-toc-link href="#chain-distillation">Chain Distillation</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1163-prompt-chaining-vs-single-complex-prompt">1.16.3 Prompt Chaining vs. Single Complex Prompt</a>
+<a class="toc-link toc-level-4" data-toc-link href="#complexity-threshold-analysis">Complexity Threshold Analysis</a>
+<a class="toc-link toc-level-4" data-toc-link href="#empirical-quality-comparison">Empirical Quality Comparison</a>
+<a class="toc-link toc-level-4" data-toc-link href="#context-window-utilization-analysis">Context Window Utilization Analysis</a>
+<a class="toc-link toc-level-3" data-toc-link href="#1164-prompt-chaining-vs-multi-agent-systems">1.16.4 Prompt Chaining vs. Multi-Agent Systems</a>
+<a class="toc-link toc-level-4" data-toc-link href="#structural-comparison">Structural Comparison</a>
+<a class="toc-link toc-level-4" data-toc-link href="#chain-as-multi-agent-orchestration-backbone">Chain as Multi-Agent Orchestration Backbone</a>
+<a class="toc-link toc-level-4" data-toc-link href="#communication-protocol-comparison">Communication Protocol Comparison</a>
+<a class="toc-link toc-level-3" data-toc-link href="#summary-paradigm-selection-decision-tree">Summary: Paradigm Selection Decision Tree</a>
+      </nav>
+    </aside>
+  </div>
+  <script type="module" src="../assets/app.js?v=2026-02-19T19%3A13%3A56.962Z"></script>
+</body>
+</html>

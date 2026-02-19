@@ -5,11 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Finding the Best Training Configuration for Distributed Large Model Training">
   <title>Finding the Best Training Configuration for Distributed Large Model Training | AI Engineering Knowledge Hub</title>
-  <script>(()=>{try{const k="docs-theme-mode";const r=window.localStorage.getItem(k);const m=r==="graphite"||r==="ivory"?r:"ivory";document.documentElement.dataset.theme=m;document.documentElement.style.colorScheme=m==="graphite"?"dark":"light"}catch{document.documentElement.dataset.theme="ivory";document.documentElement.style.colorScheme="light"}})();</script>
+  <script>
+  (() => {
+    try {
+      const key = "docs-theme-mode";
+      const raw = window.localStorage.getItem(key);
+      const mode = raw === "graphite" || raw === "ivory" ? raw : "ivory";
+      document.documentElement.dataset.theme = mode;
+      document.documentElement.style.colorScheme = mode === "graphite" ? "dark" : "light";
+    } catch {
+      document.documentElement.dataset.theme = "ivory";
+      document.documentElement.style.colorScheme = "light";
+    }
+  })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css?v=2026-02-20T01%3A05%3A00.000Z">
-  <link rel="stylesheet" href="./assets/styles.css?v=2026-02-20T01%3A05%3A00.000Z">
+  <link rel="stylesheet" href="./assets/vendor/katex/katex.min.css?v=2026-02-19T19%3A13%3A56.962Z">
+  <link rel="stylesheet" href="./assets/styles.css?v=2026-02-19T19%3A13%3A56.962Z">
 </head>
 <body>
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
@@ -31,6 +44,26 @@
       <p class="pane-label">Source Folder</p>
       <p class="pane-title">llm_training_at_scale</p>
       <nav class="doc-nav" aria-label="Document list">
+<a class="doc-link" data-doc-link data-doc-title="1.10 advanced prompt chaining techniques" data-doc-path="agentic_ai/advanced_prompt_chaining_techniques" data-doc-folder="agentic_ai" href="./Agentic_ai/Advanced_prompt_chaining_techniques.html"><span>1.10 Advanced Prompt Chaining Techniques</span><small>Agentic_ai/Advanced_prompt_chaining_techniques</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/architecture_and_design_patterns_of_prompt_chains" data-doc-folder="agentic_ai" href="./Agentic_ai/Architecture_and_design_patterns_of_prompt_chains.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Architecture_and_design_patterns_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.7 error handling, robustness, and fault tolerance" data-doc-path="agentic_ai/error_handling_robustness_and_fault_tolerance" data-doc-folder="agentic_ai" href="./Agentic_ai/Error_handling_robustness_and_fault_tolerance.html"><span>1.7 Error Handling, Robustness, and Fault Tolerance</span><small>Agentic_ai/Error_handling_robustness_and_fault_tolerance</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.13 evaluation of prompt chains" data-doc-path="agentic_ai/evaluation_of_prompt_chains" data-doc-folder="agentic_ai" href="./Agentic_ai/Evaluation_of_prompt_chains.html"><span>1.13 Evaluation of Prompt Chains</span><small>Agentic_ai/Evaluation_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive treatment" data-doc-path="agentic_ai/foundations_of_prompt_chaining" data-doc-folder="agentic_ai" href="./Agentic_ai/Foundations_of_prompt_chaining.html"><span>Chapter 1: Prompt Chaining — Comprehensive Treatment</span><small>Agentic_ai/Foundations_of_prompt_chaining</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.9 optimization of prompt chains" data-doc-path="agentic_ai/optimization_of_prompt_chains" data-doc-folder="agentic_ai" href="./Agentic_ai/Optimization_of_prompt_chains.html"><span>1.9 Optimization of Prompt Chains</span><small>Agentic_ai/Optimization_of_prompt_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="prompt chaining: frameworks, observability, evaluation, security, applications, and paradigm comparisons" data-doc-path="agentic_ai/prompt chaining_frameworks_and_implementation" data-doc-folder="agentic_ai" href="./Agentic_ai/Prompt Chaining_frameworks_and_Implementation.html"><span>Prompt Chaining: Frameworks, Observability, Evaluation, Security, Applications, and Paradigm Comparisons</span><small>Agentic_ai/Prompt Chaining_frameworks_and_Implementation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining — comprehensive index" data-doc-path="agentic_ai/prompt_chaining_index" data-doc-folder="agentic_ai" href="./Agentic_ai/Prompt_Chaining_index.html"><span>Chapter 1: Prompt Chaining — Comprehensive Index</span><small>Agentic_ai/Prompt_Chaining_index</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.16 prompt chaining vs. related paradigms" data-doc-path="agentic_ai/prompt_chaining_vs_related_paradigm" data-doc-folder="agentic_ai" href="./Agentic_ai/Prompt_chaining_vs_related_paradigm.html"><span>1.16 Prompt Chaining vs. Related Paradigms</span><small>Agentic_ai/Prompt_chaining_vs_related_paradigm</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 1: prompt chaining" data-doc-path="agentic_ai/prompt_design_for_chain_steps" data-doc-folder="agentic_ai" href="./Agentic_ai/Prompt_design_for_chain_steps.html"><span>Chapter 1: Prompt Chaining</span><small>Agentic_ai/Prompt_design_for_chain_steps</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.15 real-world applications and case studies" data-doc-path="agentic_ai/real-world_applications_and_case_studies" data-doc-folder="agentic_ai" href="./Agentic_ai/Real-World_applications_and_case_studies.html"><span>1.15 Real-World Applications and Case Studies</span><small>Agentic_ai/Real-World_applications_and_case_studies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.6 routing and conditional logic in chains" data-doc-path="agentic_ai/routing_and_conditional_logic_in_chains" data-doc-folder="agentic_ai" href="./Agentic_ai/Routing_and_conditional_logic_in_chains.html"><span>1.6 Routing and Conditional Logic in Chains</span><small>Agentic_ai/Routing_and_conditional_logic_in_chains</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.14 security, safety, and guardrails in prompt chains" data-doc-path="agentic_ai/security_safety_and_guardrails_in_prompt_chaind" data-doc-folder="agentic_ai" href="./Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind.html"><span>1.14 Security, Safety, and Guardrails in Prompt Chains</span><small>Agentic_ai/Security_safety_and_guardrails_in_prompt_chaind</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.4 state management and context propagation" data-doc-path="agentic_ai/state_management_and_context_propagation" data-doc-folder="agentic_ai" href="./Agentic_ai/State_management_and_context_propagation.html"><span>1.4 State Management and Context Propagation</span><small>Agentic_ai/State_management_and_context_propagation</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.5 task decomposition strategies" data-doc-path="agentic_ai/task_decomposition_strategies" data-doc-folder="agentic_ai" href="./Agentic_ai/Task_decomposition_strategies.html"><span>1.5 Task Decomposition Strategies</span><small>Agentic_ai/Task_decomposition_strategies</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/documentation_mcp_mcp_for_agent_security" data-doc-folder="agentic_ai/tools" href="./Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Documentation_MCP_mcp_for_agent_security</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota reference" data-doc-path="agentic_ai/tools/introduction_tools_action" data-doc-folder="agentic_ai/tools" href="./Agentic_ai/Tools/Introduction_Tools_Action.html"><span>Chapter 2: Tools — Comprehensive SOTA Reference</span><small>Agentic_ai/Tools/Introduction_Tools_Action</small></a>
+<a class="doc-link" data-doc-link data-doc-title="2.6 security in mcp" data-doc-path="agentic_ai/tools/security_mcp_conclusion" data-doc-folder="agentic_ai/tools" href="./Agentic_ai/Tools/Security_MCP_conclusion.html"><span>2.6 Security in MCP</span><small>Agentic_ai/Tools/Security_MCP_conclusion</small></a>
+<a class="doc-link" data-doc-link data-doc-title="chapter 2: tools — comprehensive sota index" data-doc-path="agentic_ai/tools/tools_comprehensive_index" data-doc-folder="agentic_ai/tools" href="./Agentic_ai/Tools/Tools_comprehensive_Index.html"><span>Chapter 2: Tools — Comprehensive SOTA Index</span><small>Agentic_ai/Tools/Tools_comprehensive_Index</small></a>
+<a class="doc-link" data-doc-link data-doc-title="1.8 verification, validation, and quality control" data-doc-path="agentic_ai/verification_validation_and_quality_control" data-doc-folder="agentic_ai" href="./Agentic_ai/Verification_validation_and_quality_control.html"><span>1.8 Verification, Validation, and Quality Control</span><small>Agentic_ai/Verification_validation_and_quality_control</small></a>
 <a class="doc-link" data-doc-link data-doc-title="context parallelism and ring attention" data-doc-path="context_parallelism_update" data-doc-folder="root" href="./context_parallelism_update.html"><span>Context Parallelism and Ring Attention</span><small>context_parallelism_update</small></a>
 <a class="doc-link" data-doc-link data-doc-title="tensor parallelism (tp) and sequence parallelism (sp)" data-doc-path="context_parallelism" data-doc-folder="root" href="./context_parallelism.html"><span>Tensor Parallelism (TP) and Sequence Parallelism (SP)</span><small>context_parallelism</small></a>
 <a class="doc-link" data-doc-link data-doc-title="data parallelism: a comprehensive technical treatment" data-doc-path="data_parallelism_basic" data-doc-folder="root" href="./data_parallelism_basic.html"><span>Data Parallelism: A Comprehensive Technical Treatment</span><small>data_parallelism_basic</small></a>
@@ -488,7 +521,7 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
         <a class="pager-link" href="./diving_gpus_fusing_threading_and_mixing.html"><small>Next</small><strong>Diving into the GPUs — Fusing, Threading, and Mixing</strong></a>
       </section>
       <footer class="doc-footer">
-        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-18T14:54:34.535Z">2026-02-18T14:54:34.535Z</time>.</p>
+        <p>Generated from <code>llm_training_at_scale</code> at <time datetime="2026-02-19T19:13:56.962Z">2026-02-19T19:13:56.962Z</time>.</p>
       </footer>
     </main>
     <aside class="toc-pane">
@@ -526,6 +559,6 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
       </nav>
     </aside>
   </div>
-  <script type="module" src="./assets/app.js?v=2026-02-20T01%3A05%3A00.000Z"></script>
+  <script type="module" src="./assets/app.js?v=2026-02-19T19%3A13%3A56.962Z"></script>
 </body>
 </html>
