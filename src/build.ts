@@ -13,6 +13,7 @@ const DEFAULT_LANDING_SUBTITLE =
   "A scalable documentation workspace for LLMs, agentic AI, and advanced engineering topics.";
 const SITE_CONFIG_FILENAME = "site.config.json";
 const EXTERNAL_PROTOCOL_RE = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+const NATURAL_COLLATOR = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
 interface SiteConfig {
   siteTitle: string;
@@ -33,6 +34,154 @@ function toPosixPath(value: string): string {
 function normalizeRelativeDir(rootDir: string, targetDir: string): string {
   const relative = toPosixPath(path.relative(rootDir, targetDir));
   return relative.length > 0 ? relative : ".";
+}
+
+function naturalCompare(left: string, right: string): number {
+  return NATURAL_COLLATOR.compare(left, right);
+}
+
+function stripMarkdownExtension(relativeMarkdownPath: string): string {
+  return relativeMarkdownPath.replace(/\.md$/i, "");
+}
+
+function folderFromRelativePath(relativeMarkdownPath: string): string {
+  const normalized = stripMarkdownExtension(relativeMarkdownPath);
+  const separatorIndex = normalized.lastIndexOf("/");
+  return separatorIndex < 0 ? "" : normalized.slice(0, separatorIndex);
+}
+
+function baseNameFromRelativePath(relativeMarkdownPath: string): string {
+  const normalized = stripMarkdownExtension(relativeMarkdownPath);
+  const separatorIndex = normalized.lastIndexOf("/");
+  return separatorIndex < 0 ? normalized : normalized.slice(separatorIndex + 1);
+}
+
+function parseLeadingOrderSequence(value: string): number[] | null {
+  const normalized = value.trim();
+
+  if (!normalized) {
+    return null;
+  }
+
+  const chapterMatch = normalized.match(/^(?:chapter|section|part|unit|lesson)\s+(\d+(?:\.\d+)*)\b/i);
+  const numericMatch = normalized.match(/^(\d+(?:\.\d+)*)\b/);
+  const source = chapterMatch?.[1] ?? numericMatch?.[1];
+
+  if (!source) {
+    return null;
+  }
+
+  const sequence = source
+    .split(".")
+    .map((segment) => Number.parseInt(segment, 10))
+    .filter((segment) => Number.isFinite(segment));
+
+  return sequence.length > 0 ? sequence : null;
+}
+
+function compareOrderSequences(left: number[] | null, right: number[] | null): number {
+  if (left && right) {
+    const limit = Math.min(left.length, right.length);
+
+    for (let index = 0; index < limit; index += 1) {
+      const delta = left[index] - right[index];
+
+      if (delta !== 0) {
+        return delta;
+      }
+    }
+
+    return left.length - right.length;
+  }
+
+  if (left) {
+    return -1;
+  }
+
+  if (right) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function isIndexLike(baseName: string, title: string): boolean {
+  const normalizedBase = baseName.toLowerCase();
+  return (
+    normalizedBase === "index" ||
+    normalizedBase.endsWith("_index") ||
+    normalizedBase.endsWith("-index") ||
+    /\bindex\b/i.test(title)
+  );
+}
+
+function sortDocuments(pages: DocumentPage[]): DocumentPage[] {
+  const meta = new Map<
+    DocumentPage,
+    {
+      folder: string;
+      rootRank: number;
+      isIndex: boolean;
+      sequence: number[] | null;
+      title: string;
+      stemPath: string;
+    }
+  >();
+
+  for (const page of pages) {
+    const stemPath = stripMarkdownExtension(page.relativeMarkdownPath);
+    const folder = folderFromRelativePath(page.relativeMarkdownPath);
+    const baseName = baseNameFromRelativePath(page.relativeMarkdownPath);
+
+    meta.set(page, {
+      folder,
+      rootRank: folder.length === 0 ? 0 : 1,
+      isIndex: isIndexLike(baseName, page.title),
+      sequence: parseLeadingOrderSequence(page.title) ?? parseLeadingOrderSequence(baseName),
+      title: page.title,
+      stemPath
+    });
+  }
+
+  const ordered = [...pages];
+  ordered.sort((left, right) => {
+    const leftMeta = meta.get(left);
+    const rightMeta = meta.get(right);
+
+    if (!leftMeta || !rightMeta) {
+      return naturalCompare(left.outputRelPath, right.outputRelPath);
+    }
+
+    if (leftMeta.rootRank !== rightMeta.rootRank) {
+      return leftMeta.rootRank - rightMeta.rootRank;
+    }
+
+    const folderCompare = naturalCompare(leftMeta.folder, rightMeta.folder);
+
+    if (folderCompare !== 0) {
+      return folderCompare;
+    }
+
+    if (leftMeta.isIndex !== rightMeta.isIndex) {
+      return leftMeta.isIndex ? -1 : 1;
+    }
+
+    const sequenceCompare = compareOrderSequences(leftMeta.sequence, rightMeta.sequence);
+
+    if (sequenceCompare !== 0) {
+      return sequenceCompare;
+    }
+
+    const titleCompare = naturalCompare(leftMeta.title, rightMeta.title);
+
+    if (titleCompare !== 0) {
+      return titleCompare;
+    }
+
+    return naturalCompare(leftMeta.stemPath, rightMeta.stemPath);
+  });
+
+  return ordered;
 }
 
 function rewriteMarkdownHref(href: string): string {
@@ -255,8 +404,7 @@ async function loadDocuments(sourceDir: string): Promise<DocumentPage[]> {
     })
   );
 
-  pages.sort((left, right) => left.outputRelPath.localeCompare(right.outputRelPath));
-  return pages;
+  return sortDocuments(pages);
 }
 
 async function writeDocumentPages(
