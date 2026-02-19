@@ -370,10 +370,12 @@ export function createMarkdownRenderer(): MarkdownIt {
   markdown.renderer.rules.link_open = (tokens, index, options, env, self): string => {
     const token = tokens[index];
     const href = token.attrGet("href") ?? "";
+    token.attrJoin("class", "doc-inline-link");
 
     if (/^https?:\/\//i.test(href)) {
       token.attrSet("target", "_blank");
       token.attrSet("rel", "noopener noreferrer");
+      token.attrJoin("class", "external-link");
     }
 
     return originalLinkRenderer(tokens, index, options, env, self);

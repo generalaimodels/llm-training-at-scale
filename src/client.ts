@@ -263,6 +263,8 @@ function getThemeButton(): HTMLButtonElement | null {
 }
 
 function applyTheme(mode: ThemeMode): void {
+  document.documentElement.dataset.theme = mode;
+  document.documentElement.style.colorScheme = mode === "graphite" ? "dark" : "light";
   document.body.dataset.theme = mode;
   const button = getThemeButton();
 

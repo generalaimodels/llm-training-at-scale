@@ -47,6 +47,23 @@ function withVersion(href: string, version: string): string {
   return `${href}?v=${encodeURIComponent(version)}`;
 }
 
+function renderThemeBootScript(): string {
+  return `<script>
+  (() => {
+    try {
+      const key = "docs-theme-mode";
+      const raw = window.localStorage.getItem(key);
+      const mode = raw === "graphite" || raw === "ivory" ? raw : "ivory";
+      document.documentElement.dataset.theme = mode;
+      document.documentElement.style.colorScheme = mode === "graphite" ? "dark" : "light";
+    } catch {
+      document.documentElement.dataset.theme = "ivory";
+      document.documentElement.style.colorScheme = "light";
+    }
+  })();
+  </script>`;
+}
+
 function renderDocNavigation(input: DocumentTemplateInput): string {
   return input.docs
     .map((doc) => {
@@ -110,12 +127,13 @@ export function renderDocumentTemplate(input: DocumentTemplateInput): string {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(input.current.title)}">
   <title>${escapeHtml(pageTitle)}</title>
+  ${renderThemeBootScript()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${escapeHtml(katexHref)}">
   <link rel="stylesheet" href="${escapeHtml(stylesHref)}">
 </head>
-<body data-theme="ivory">
+<body>
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
   <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
   <header class="topbar">
@@ -220,11 +238,12 @@ export function renderLandingTemplate(input: LandingTemplateInput): string {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(input.siteTitle)}">
   <title>${escapeHtml(input.siteTitle)}</title>
+  ${renderThemeBootScript()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="${escapeHtml(stylesHref)}">
 </head>
-<body class="landing" data-theme="ivory">
+<body class="landing">
   <div class="ambient-layer ambient-layer-a" aria-hidden="true"></div>
   <div class="ambient-layer ambient-layer-b" aria-hidden="true"></div>
   <main class="landing-main">
