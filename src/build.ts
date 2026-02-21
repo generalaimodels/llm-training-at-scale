@@ -10,7 +10,7 @@ const DEFAULT_OUTPUT_DIR = "site";
 const DEFAULT_SITE_TITLE = "AI Technical Documentation";
 const DEFAULT_LANDING_KICKER = "Technical Knowledge Base";
 const DEFAULT_LANDING_SUBTITLE =
-  "A scalable documentation workspace for LLMs, agentic AI, and advanced engineering topics.";
+  "A scalable documentation workspace for LLMs, and advanced engineering topics.";
 const SITE_CONFIG_FILENAME = "site.config.json";
 const EXTERNAL_PROTOCOL_RE = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
 const NATURAL_COLLATOR = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
